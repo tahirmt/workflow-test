@@ -15,13 +15,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: git checkout "${GITHUB_REF:11}"
-    - name: Create Pull request
-      uses: repo-sync/pull-request@v2
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        destination_branch: "master"
-        pr_title: "Merge develop-master"
-        pr_body: "This PR is created generated automatically"
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v2
       with:
