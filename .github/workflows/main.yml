@@ -8,16 +8,14 @@ on:
 
 
 jobs:
-  build:
-
+  createPullRequest:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
+        name: Doing nothing honestly
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          title: "merge develop to master"
-          base: "master"
-          branch: "develop"
+          title: 'merge develop to master'
+          branch: master
