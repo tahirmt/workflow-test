@@ -1,4 +1,4 @@
-name: Create Pr
+name: Create PR
 
 on: 
   push:
