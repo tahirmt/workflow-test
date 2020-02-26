@@ -17,7 +17,7 @@ jobs:
     - name: Create Pull request
       uses: repo-sync/pull-request@v2
       with:
-        github_token: "2ebab4a6dee17d86a86138b5442d408488954464"
+        github_token: ${{ secrets.GITHUB_TOKEN }}
         destination_branch: "master"
         pr_title: "Merge develop-master"
         pr_body: "This PR is created generated automatically"
