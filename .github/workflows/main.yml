@@ -1,6 +1,11 @@
 name: CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - develop # pushes on develop
+
+
 
 jobs:
   build:
@@ -9,19 +14,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
-        
-        # path to file that contains the POST response of the event
-    # Example: https://github.com/actions/bin/tree/master/debug
-    # Value: /github/workflow/event.json
-
-    if [[ ! -f "${GITHUB_EVENT_PATH}" ]]; then
-        echo "can not find github events file in GITHUB_EVENT_PATH ${GITHUB_EVENT_PATH}";
-        exit 1;
-    fi
-    echo "using github events file in GITHUB_EVENT_PATH ${GITHUB_EVENT_PATH}";
+    - name: Create Pull request
+      uses: repo-sync/pull-request@v2
+      with:
+        github_token: "2ebab4a6dee17d86a86138b5442d408488954464"
+        destination_branch: "master"
+        pr_title: "Merge develop-master"
+        pr_body: "This PR is created generated automatically"
