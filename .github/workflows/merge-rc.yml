@@ -21,6 +21,9 @@ jobs:
       - name: merge release-candidate to merge-release-candidate
         run: git merge release-candidate
       
+      - name: set upstream
+        run: git branch -u origin/merge-release-candidate
+        
       - name: push changes from merge-release-candidate
         run: git push origin merge-release-candidate
 
