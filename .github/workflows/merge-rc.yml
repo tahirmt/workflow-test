@@ -13,16 +13,16 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: switch to release-candidate
-          run: git checkout release-candidate
+        run: git checkout release-candidate
 
       - name: checkout merge-release-candidate
-          run: git checkout -b merge-release-candidate
+        run: git checkout -b merge-release-candidate
       
       - name: merge release-candidate to merge-release-candidate
-          run: git merge release-candidate
+        run: git merge release-candidate
       
       - name: push changes from merge-release-candidate
-          run: git push
+        run: git push
 
   pull-request:
     runs-on: ubuntu-latest
