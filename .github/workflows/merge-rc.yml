@@ -22,7 +22,7 @@ jobs:
         run: git merge release-candidate
 
       - name: push changes from merge-release-candidate
-        run: git push -u origin merge-release-candidate
+        run: git push -u origin merge-release-candidate --force
 
   pull-request:
     runs-on: ubuntu-latest
