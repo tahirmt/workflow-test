@@ -21,9 +21,10 @@ jobs:
     
     steps:
       - name: Check Acccess
-        uses: ludeeus/action-accesscontroll@master
+        uses: scherermichael-oss/action-has-permission@master
+        with:
+          required-permission: write
         env:
-          ACTION_LEVEL: "admin"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Checkout
