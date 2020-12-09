@@ -60,7 +60,7 @@ jobs:
       - name: Bump version
         run: |
           new_app_version=${{ steps.update-version.outputs.new_app_version }}
-          git add -all
+          git add --all
           git commit -am "Bump version number to $new_app_version"
           git push origin develop:develop
       
