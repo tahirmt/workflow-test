@@ -47,13 +47,12 @@ jobs:
           git push origin develop:develop
 
           tag="v$new_app_version"
-          echo '::set-output name=new_app_version::$new_app_version'
-          echo '::set-output name=new_tag::$tag'
+          echo "::set-output name=new_app_version::$new_app_version"
           
       - name: Update tag
         uses: richardsimko/update-tag@v1
         with:
-          tag_name: ${{ steps.update-version.outputs.new_tag }}
+          tag_name: "v${{ steps.update-version.outputs.new_app_version }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
@@ -67,7 +66,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: ${{ steps.update-version.outputs.new_tag }}
+          tag_name: "v${{ steps.update-version.outputs.new_app_version }}"
           release_name: ${{ steps.update-version.outputs.new_app_version }}
           body: |
             ${{ steps.Changelog.outputs.changelog }}
