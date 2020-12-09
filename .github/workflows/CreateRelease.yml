@@ -57,7 +57,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Changelog
-        uses: heinrichreimer/github-changelog-generator-action@v2.1.1
+        uses: glennawatson/ChangeLog@v1
         id: changelog
       
       - name: Create Release
