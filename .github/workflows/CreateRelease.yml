@@ -34,8 +34,6 @@ jobs:
         name: Update version
         working-directory: Sources
         run: |
-          set -e
-          
           APP_INFO_PLIST="TSCoreKit/Info.plist"
           current_app_version="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' $APP_INFO_PLIST)"
           if [ ! -z "${{ github.event.inputs.newVersion }}" ]; then
@@ -46,7 +44,7 @@ jobs:
 
             if [ $new_app_version == $current_app_version ]; then
               echo "The new version cannot the same as the current version"
-              exit 0
+              exit 1
             fi
 
             major="$(echo $current_app_version | awk 'BEGIN { FS="." } { print $1 }')"
@@ -59,15 +57,15 @@ jobs:
             
             if [ $new_major -lt $major ]; then
               echo "The new version cannot be less than the current version"
-              exit 0
+              exit 1
             elif [ $new_major -eq $major ]; then
               if [ $new_minor -lt $minor ]; then
                 echo "The new version cannot be less than the current version"
-                exit 0
+                exit 1
               elif [ $new_minor -eq $minor ]; then
                 if [ $new_patch -lt $patch ]; then
                   echo "The new version cannot be less than the current version"
-                  exit 0
+                  exit 1
                 fi
               fi
             fi
