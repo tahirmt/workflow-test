@@ -1,5 +1,5 @@
 # pod_version is used by the Rakefile for automatic updating.
-pod_version = "0.7.9"
+pod_version = "1.0.2"
 
 Pod::Spec.new do |s|
   s.name             = "TSCoreKit"
