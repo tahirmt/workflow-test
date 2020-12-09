@@ -1,13 +1,13 @@
 //
-//  TestUITests.swift
-//  TestUITests
+//  TSCoreKitUITests.swift
+//  TSCoreKitUITests
 //
 //  Created by Mahmood Tahir on 2020-12-09.
 //
 
 import XCTest
 
-class TestUITests: XCTestCase {
+class TSCoreKitUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
