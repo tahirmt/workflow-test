@@ -54,8 +54,8 @@ jobs:
           
       - name: Update podspec files
         run: |
-          ls
-          
+          new_app_version=${{ steps.update-version.outputs.new_app_version }}
+          find . -type f -name "*.podspec" -print0 | xargs -0 sed -i '' "s/pod_version = .*/pod_version = \"$new_app_version\"/g"
           
       - name: Bump version
         run: |
