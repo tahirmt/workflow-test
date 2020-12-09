@@ -56,15 +56,15 @@ jobs:
             new_patch="$(echo $new_app_version | awk 'BEGIN { FS="." } { print $3 }')"
             
             if [ $new_major -lt $major ]; then
-              echo "The new version cannot be less than the current version"
+              echo "The new version $new_app_version cannot be less than the current version $current_app_version"
               exit 1
             elif [ $new_major -eq $major ]; then
               if [ $new_minor -lt $minor ]; then
-                echo "The new version cannot be less than the current version"
+                echo "The new version $new_app_version cannot be less than the current version $current_app_version"
                 exit 1
               elif [ $new_minor -eq $minor ]; then
                 if [ $new_patch -lt $patch ]; then
-                  echo "The new version cannot be less than the current version"
+                  echo "The new version $new_app_version cannot be less than the current version $current_app_version"
                   exit 1
                 fi
               fi
