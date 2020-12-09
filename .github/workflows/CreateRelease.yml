@@ -21,9 +21,9 @@ jobs:
     
     steps:
       - name: Check Acccess
-        uses: scherermichael-oss/action-has-permission@master
+        uses: sushichop/action-repository-permission@v1
         with:
-          required-permission: write
+          required-permission: admin
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
