@@ -34,6 +34,8 @@ jobs:
         name: Update version
         working-directory: Sources
         run: |
+          set -e
+          
           APP_INFO_PLIST="TSCoreKit/Info.plist"
           current_app_version="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' $APP_INFO_PLIST)"
           if [ ! -z "${{ github.event.inputs.newVersion }}" ]; then
