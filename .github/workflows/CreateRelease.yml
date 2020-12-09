@@ -1,0 +1,69 @@
+name: Create release
+
+on:
+  workflow_dispatch:
+    inputs:
+      isMajor:
+        description: 'Major Update?'
+        required: true
+        default: 'false'
+      isMinor:
+        description: 'Minor Update?'
+        required: true
+        default: 'false'
+      newVersion: 
+        description: 'New Version'
+        required: false
+
+jobs:
+  create-release:
+    runs-on: macos-10.15
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: 'develop'
+      
+      - id: update-version
+        name: Update version
+        working-directory: Sources
+        run: |
+          current_app_version="0.0.0"
+          if [ ! -z "${{ github.event.inputs.newVersion }}" ]; then
+            new_app_version=${{ github.event.inputs.newVersion }}
+          elif [ ${{ github.event.inputs.isMajor }} == 'true' ]; then
+            new_app_version="$(echo $current_app_version | awk 'BEGIN { FS="." } { print $1+1 ".0" ".0" }')"
+          elif [ ${{ github.event.inputs.isMinor }} == 'true' ]; then
+            new_app_version="$(echo $current_app_version | awk 'BEGIN { FS="." } { print $1 "." $2+1 ".0" }')"
+          else
+            new_app_version="$(echo $current_app_version | awk 'BEGIN { FS="." } { print $1 "." $2 "." $3+1 }')"
+          fi
+
+          # Update the version
+          echo "Updating to $new_app_version"
+
+          git commit -am "Bump version number to $new_app_version"
+          git push origin develop:develop
+
+          echo '::set-output name=new_app_version::$new_app_version'
+          
+      - name: Update tag
+        uses: richardsimko/update-tag@v1
+        with:
+          tag_name: "v${{ steps.update-version.outputs.new_app_version }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: "v${{ steps.update-version.outputs.new_app_version }}"
+          release_name: ${{ steps.update-version.outputs.new_app_version }}
+          body: |
+            ${{ steps.update-version.outputs.new_app_version }}
+          draft: false
+          prerelease: false
