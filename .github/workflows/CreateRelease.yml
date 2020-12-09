@@ -27,7 +27,6 @@ jobs:
       
       - id: update-version
         name: Update version
-        working-directory: Sources
         run: |
           current_app_version="0.0.0"
           if [ ! -z "${{ github.event.inputs.newVersion }}" ]; then
