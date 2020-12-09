@@ -20,6 +20,12 @@ jobs:
     runs-on: macos-10.15
     
     steps:
+      - name: Check Acccess
+        uses: ludeeus/action-accesscontroll@master
+        env:
+          ACTION_LEVEL: "admin"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Checkout
         uses: actions/checkout@v2
         with:
