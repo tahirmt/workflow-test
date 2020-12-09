@@ -43,7 +43,7 @@ jobs:
             new_app_version="$(echo $new_app_version | awk 'BEGIN { FS="." } { print $1+0 "." $2+0 "." $3+0 }')"
 
             if [ $new_app_version == $current_app_version ]; then
-              echo "The new version cannot the same as the current version"
+              echo "The new version cannot the same as the current version $current_app_version"
               exit 1
             fi
 
