@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       isMajor:
-        description: 'Major Update?'
+        description: 'Major Update'
         required: true
         default: 'false'
       isMinor:
-        description: 'Minor Update?'
+        description: 'Minor Update'
         required: true
         default: 'false'
       newVersion: 
@@ -24,8 +24,6 @@ jobs:
         uses: sushichop/action-repository-permission@v1
         with:
           required-permission: admin
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -40,6 +38,37 @@ jobs:
           current_app_version="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' $APP_INFO_PLIST)"
           if [ ! -z "${{ github.event.inputs.newVersion }}" ]; then
             new_app_version=${{ github.event.inputs.newVersion }}
+            
+            #convert the new version into the SemVer format
+            new_app_version="$(echo $new_app_version | awk 'BEGIN { FS="." } { print $1+0 "." $2+0 "." $3+0 }')"
+
+            if [ $new_app_version == $current_app_version ]; then
+              echo "The new version cannot the same as the current version"
+              exit 0
+            fi
+
+            major="$(echo $current_app_version | awk 'BEGIN { FS="." } { print $1 }')"
+            minor="$(echo $current_app_version | awk 'BEGIN { FS="." } { print $2 }')"
+            patch="$(echo $current_app_version | awk 'BEGIN { FS="." } { print $3 }')"
+
+            new_major="$(echo $new_app_version | awk 'BEGIN { FS="." } { print $1 }')"
+            new_minor="$(echo $new_app_version | awk 'BEGIN { FS="." } { print $2 }')"
+            new_patch="$(echo $new_app_version | awk 'BEGIN { FS="." } { print $3 }')"
+            
+            if [ $new_major -lt $major ]; then
+              echo "The new version cannot be less than the current version"
+              exit 0
+            elif [ $new_major -eq $major ]; then
+              if [ $new_minor -lt $minor ]; then
+                echo "The new version cannot be less than the current version"
+                exit 0
+              elif [ $new_minor -eq $minor ]; then
+                if [ $new_patch -lt $patch ]; then
+                  echo "The new version cannot be less than the current version"
+                  exit 0
+                fi
+              fi
+            fi
           elif [ ${{ github.event.inputs.isMajor }} == 'true' ]; then
             new_app_version="$(echo $current_app_version | awk 'BEGIN { FS="." } { print $1+1 ".0" ".0" }')"
           elif [ ${{ github.event.inputs.isMinor }} == 'true' ]; then
