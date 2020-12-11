@@ -98,9 +98,9 @@ jobs:
         env:
           TOKEN: ${{ secrets.BOT_TOKEN }}
         run: |
-          REMOTE_REPO="https://${TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-          git config user.name "${GITHUB_ACTOR}"
-          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          REMOTE_REPO="https://$TOKEN@github.com/${GITHUB_REPOSITORY}.git"
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
           new_app_version=${{ steps.update-version.outputs.new_app_version }}
           git add --all
