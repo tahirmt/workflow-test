@@ -94,13 +94,16 @@ jobs:
           find . -type f -name "*.podspec" -print0 | xargs -0 sed -i '' "s/pod_version = .*/pod_version = \"$new_app_version\"/g"
           
       - name: Bump version
-        env:
-          GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
         run: |
           new_app_version=${{ steps.update-version.outputs.new_app_version }}
           git add --all
           git commit -am "Bump version number to $new_app_version"
-          git push origin develop:develop
+          
+      - name: Push updates
+        uses: CasperWA/push-protected@v2
+        with:
+          token: ${{ secrets.BOT_TOKEN }}
+          branch: develop
       
       - name: Update tag
         uses: richardsimko/update-tag@v1
