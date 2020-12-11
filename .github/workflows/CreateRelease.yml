@@ -105,7 +105,7 @@ jobs:
           new_app_version=${{ steps.update-version.outputs.new_app_version }}
           git add --all
           git commit -am "Bump version number to $new_app_version"
-          git push $REMOTE_REPO develop:$REF
+          git push $REMOTE_REPO develop:develop
           
       - name: Update tag
         uses: richardsimko/update-tag@v1
