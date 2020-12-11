@@ -43,7 +43,7 @@ jobs:
             new_app_version="$(echo $new_app_version | awk 'BEGIN { FS="." } { print $1+0 "." $2+0 "." $3+0 }')"
 
             if [ $new_app_version == $current_app_version ]; then
-              echo "The new version cannot the same as the current version $current_app_version"
+              echo "The new version cannot be the same as the current version $current_app_version"
               exit 1
             fi
 
@@ -94,6 +94,8 @@ jobs:
           find . -type f -name "*.podspec" -print0 | xargs -0 sed -i '' "s/pod_version = .*/pod_version = \"$new_app_version\"/g"
           
       - name: Bump version
+        env:
+          GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
         run: |
           new_app_version=${{ steps.update-version.outputs.new_app_version }}
           git add --all
