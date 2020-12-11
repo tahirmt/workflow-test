@@ -95,27 +95,18 @@ jobs:
           
       - name: Bump version
         id: generate-commit-message
+        env:
+          TOKEN: ${{ secrets.BOT_TOKEN }}
         run: |
+          REMOTE_REPO="https://${TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+
           new_app_version=${{ steps.update-version.outputs.new_app_version }}
-          #git add --all
-          #git commit -am "Bump version number to $new_app_version"
-          commit_message="Bump version number to $new_app_version"
-
-          echo "::set-output name=commit_message::$commit_message"
-
-      - name: push
-        uses: github-actions-x/commit@v2.6
-        with:
-          github-token: ${{ secrets.BOT_TOKEN }}
-          push-branch: 'develop'
-          commit-message: ${{ steps.generate-commit-message.outputs.commit_message }}
-
-      - name: Push updates
-        uses: CasperWA/push-protected@v2
-        with:
-          token: ${{ secrets.BOT_TOKEN }}
-          branch: develop
-      
+          git add --all
+          git commit -am "Bump version number to $new_app_version"
+          git push $REMOTE_REPO develop:$REF
+          
       - name: Update tag
         uses: richardsimko/update-tag@v1
         with:
