@@ -104,10 +104,10 @@ jobs:
           git push -u origin create-release --force
           
       - name: Create PR
-        uses: repo-sync/pull-request@v2
+        uses: peter-evans/create-pull-request@v3
         with:
-          source_branch: "create-release"                     # If blank, default: triggered branch
-          destination_branch: "develop"          # If blank, default: master
-          pr_title: "Bump version"
-          pr_body: ":crown: *Bump version number to ${{ steps.update-version.outputs.new_app_version }}*"  # Full markdown support, requires pr_title to be set
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          token: @{{ secrets.BOT_TOKEN }}
+          branch: "create-release"                     # If blank, default: triggered branch
+          base: "develop"          # If blank, default: master
+          title: "Bump version"
+          body: ":crown: *Bump version number to ${{ steps.update-version.outputs.new_app_version }}*"  # Full markdown support, requires pr_title to be set
