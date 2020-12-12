@@ -95,13 +95,6 @@ jobs:
         run: |
           new_app_version=${{ steps.update-version.outputs.new_app_version }}
           find . -type f -name "*.podspec" -print0 | xargs -0 sed -i '' "s/pod_version = .*/pod_version = \"$new_app_version\"/g"
-        
-      - name: Bump version
-        run: |
-          new_app_version=${{ steps.update-version.outputs.new_app_version }}
-          git add --all
-          git commit -am "Bump version number to $new_app_version"
-          git push -u origin create-release --force
           
       - name: Create PR
         uses: peter-evans/create-pull-request@v3
@@ -109,5 +102,6 @@ jobs:
           token: ${{ secrets.BOT_TOKEN }}
           branch: create-release
           base: develop
+          commit-message: "Bump version number to ${{ steps.update-version.outputs.new_app_version }}"
           title: "Bump version"
           body: ":crown: *Bump version number to ${{ steps.update-version.outputs.new_app_version }}*"  # Full markdown support, requires pr_title to be set
