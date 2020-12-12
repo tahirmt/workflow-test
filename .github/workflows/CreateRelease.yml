@@ -12,6 +12,34 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - name: Build
+    - name: Get app version
+      id: get-version
+      working-directory: Sources
       run: |
-        echo "Woohoo"
+        # get current app version
+        APP_INFO_PLIST="TSCoreKit/Info.plist"
+        current_app_version="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' $APP_INFO_PLIST)"
+        
+    - name: Update tag
+      uses: richardsimko/update-tag@v1
+      with:
+        tag_name: "v${{ steps.get-version.outputs.new_app_version }}"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Changelog
+      uses: glennawatson/ChangeLog@v1
+      id: changelog
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: "v${{ steps.get-version.outputs.new_app_version }}"
+        release_name: ${{ steps.get-version.outputs.new_app_version }}
+        body: |
+          ${{ steps.Changelog.outputs.changelog }}
+        draft: false
+        prerelease: false
