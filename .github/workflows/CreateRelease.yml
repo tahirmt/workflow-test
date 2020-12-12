@@ -1,0 +1,17 @@
+name: Create Release
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  create-release:
+    runs-on: macos-10.15
+    if: github.event.pull_request.merged == true && github.head_ref == 'create-release'
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Build
+      run: |
+        echo "Woohoo"
