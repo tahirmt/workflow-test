@@ -107,7 +107,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.BOT_TOKEN }}
-          branch: "create-release"                     # If blank, default: triggered branch
-          base: "develop"          # If blank, default: master
+          branch: create-release
+          base: develop
           title: "Bump version"
           body: ":crown: *Bump version number to ${{ steps.update-version.outputs.new_app_version }}*"  # Full markdown support, requires pr_title to be set
