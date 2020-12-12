@@ -101,7 +101,7 @@ jobs:
           new_app_version=${{ steps.update-version.outputs.new_app_version }}
           git add --all
           git commit -am "Bump version number to $new_app_version"
-          git push -u origin create-release
+          git push -u origin create-release --force
           
       - name: Create PR
         uses: repo-sync/pull-request@v2
