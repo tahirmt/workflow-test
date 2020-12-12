@@ -106,7 +106,7 @@ jobs:
       - name: Create PR
         uses: peter-evans/create-pull-request@v3
         with:
-          token: @{{ secrets.BOT_TOKEN }}
+          token: ${{ secrets.BOT_TOKEN }}
           branch: "create-release"                     # If blank, default: triggered branch
           base: "develop"          # If blank, default: master
           title: "Bump version"
