@@ -102,6 +102,5 @@ jobs:
           token: ${{ secrets.BOT_TOKEN }}
           branch: create-release
           base: develop
-          commit-message: "Bump version number to ${{ steps.update-version.outputs.new_app_version }}"
           title: "Bump version"
           body: ":crown: *Bump version number to ${{ steps.update-version.outputs.new_app_version }}*"  # Full markdown support, requires pr_title to be set
