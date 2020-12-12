@@ -20,12 +20,13 @@ jobs:
         APP_INFO_PLIST="TSCoreKit/Info.plist"
         current_app_version="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' $APP_INFO_PLIST)"
         
-        echo "::set-output name=new_app_version::$new_app_version"
+        echo "Current app version is $current_app_version"
+        echo "::set-output name=current_app_version::$current_app_version"
         
     - name: Update tag
       uses: richardsimko/update-tag@v1
       with:
-        tag_name: "v${{ steps.get-version.outputs.new_app_version }}"
+        tag_name: "v${{ steps.get-version.outputs.current_app_version }}"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -39,8 +40,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: "v${{ steps.get-version.outputs.new_app_version }}"
-        release_name: ${{ steps.get-version.outputs.new_app_version }}
+        tag_name: "v${{ steps.get-version.outputs.current_app_version }}"
+        release_name: ${{ steps.get-version.outputs.current_app_version }}
         body: |
           ${{ steps.Changelog.outputs.changelog }}
         draft: false
