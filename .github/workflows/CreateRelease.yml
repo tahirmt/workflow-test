@@ -96,9 +96,8 @@ jobs:
           new_app_version=${{ steps.update-version.outputs.new_app_version }}
           find . -type f -name "*.podspec" -print0 | xargs -0 sed -i '' "s/pod_version = .*/pod_version = \"$new_app_version\"/g"
           
-      - name: Create branch
+      - name: Push branch
         run: |
-          git checkout -b create-release
           git push origin create-release --force 
           
       - name: Create PR
