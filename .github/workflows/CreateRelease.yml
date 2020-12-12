@@ -29,6 +29,9 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: 'develop'
+          
+      - name: Create branch
+        run: git checkout -b create-release
       
       - id: update-version
         name: Update version
@@ -92,55 +95,19 @@ jobs:
         run: |
           new_app_version=${{ steps.update-version.outputs.new_app_version }}
           find . -type f -name "*.podspec" -print0 | xargs -0 sed -i '' "s/pod_version = .*/pod_version = \"$new_app_version\"/g"
-          
+        
       - name: Bump version
-        id: generate-commit-message
-        env:
-          TOKEN: ${{ secrets.BOT_TOKEN }}
         run: |
-          GITBOT_EMAIL="$GITHUB_ACTOR@users.noreply.github.com"
-          git_setup() {
-            cat <<- EOF > $HOME/.netrc
-              machine github.com
-              login $GITHUB_ACTOR
-              password $GITHUB_TOKEN
-              machine api.github.com
-              login $GITHUB_ACTOR
-              password $GITHUB_TOKEN
-          EOF
-            chmod 600 $HOME/.netrc
-
-            git config --global user.email "$GITBOT_EMAIL"
-            git config --global user.name "$GITHUB_ACTOR"
-          }
-          
-          git_setup
-
           new_app_version=${{ steps.update-version.outputs.new_app_version }}
           git add --all
           git commit -am "Bump version number to $new_app_version"
-          git push $REMOTE_REPO develop:develop
+          git push -u origin create-release
           
-      - name: Update tag
-        uses: richardsimko/update-tag@v1
+      - name: Create PR
+        uses: repo-sync/pull-request@v2
         with:
-          tag_name: "v${{ steps.update-version.outputs.new_app_version }}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
-      - name: Changelog
-        uses: glennawatson/ChangeLog@v1
-        id: changelog
-      
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-        with:
-          tag_name: "v${{ steps.update-version.outputs.new_app_version }}"
-          release_name: ${{ steps.update-version.outputs.new_app_version }}
-          body: |
-            ${{ steps.Changelog.outputs.changelog }}
-          draft: false
-          prerelease: false
+          source_branch: "create-release"                     # If blank, default: triggered branch
+          destination_branch: "develop"          # If blank, default: master
+          pr_title: "Bump version"
+          pr_body: ":crown: *Bump version number to ${{ steps.update-version.outputs.new_app_version }}*"  # Full markdown support, requires pr_title to be set
+          github_token: ${{ secrets.GITHUB_TOKEN }}
