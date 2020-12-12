@@ -20,6 +20,8 @@ jobs:
         APP_INFO_PLIST="TSCoreKit/Info.plist"
         current_app_version="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' $APP_INFO_PLIST)"
         
+        echo "::set-output name=new_app_version::$new_app_version"
+        
     - name: Update tag
       uses: richardsimko/update-tag@v1
       with:
