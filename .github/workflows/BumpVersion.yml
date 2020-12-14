@@ -103,7 +103,7 @@ jobs:
       - name: Create PR
         uses: peter-evans/create-pull-request@v3
         with:
-          token: ${{ secrets.BOT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           branch: create-release
           base: develop
           commit-message: "Bump version number to ${{ steps.update-version.outputs.new_app_version }}"
