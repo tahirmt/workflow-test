@@ -29,6 +29,19 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: 'develop'
+
+      - name: Import GPG key
+        id: import_gpg
+        uses: crazy-max/ghaction-import-gpg@v3
+        with:
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+
+      - name: setup git identity
+        run: |
+          git config --global user.name 'Mahmood Tahir'
+          git config --global user.email 'mahmood.tahir@thescore.com'
+          git config --global commit.gpgsign true
           
       - name: Create branch
         run: git checkout -b create-release
