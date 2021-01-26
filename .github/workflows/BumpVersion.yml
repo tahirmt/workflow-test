@@ -38,6 +38,7 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
 
       - name: setup git identity
+        id: git-identity
         run: |
           git config --global user.name 'Mahmood Tahir'
           git config --global user.email 'mahmood.tahir@thescore.com'

@@ -1,0 +1,21 @@
+name: Generate changelog
+
+on: 
+  push:
+
+jobs:
+  create-branch:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Generate
+        uses: tahirmt/test-sample-github-action@master
+        with:
+          token: 'token value'
+          outputFile: 'output file value'
+          since: 'since value'
+          nextTag: 'next tag value'
+          filter: 'filter regex'
+          labels: 'labels,comma,separated'
