@@ -4,14 +4,14 @@ on:
   push:
 
 jobs:
-  create-branch:
+  changelog:
     runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v2
 
       - name: Generate
-        uses: tahirmt/test-sample-github-action@master
+        uses: tahirmt/test-simple-github-action@master
         with:
           token: 'token value'
           outputFile: 'output file value'
