@@ -6,12 +6,13 @@ on:
 
 jobs:
   changelog:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
 
       - name: Generate
+        id: generate
         uses: tahirmt/test-simple-github-action@master
         with:
           outputFile: './output_file_value.md'
@@ -19,3 +20,10 @@ jobs:
           nextTag: 'next_tag_value'
           filter: 'filter_regex'
           labels: 'labels,comma,separated'
+
+      - name: Check output
+        run: |
+          changelog=${{ steps.generate.outputs.changelog }}
+
+          echo "------ CHANGELOG ------"
+          echo $changelog
