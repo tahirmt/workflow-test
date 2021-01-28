@@ -24,4 +24,4 @@ jobs:
         run: |
 
           echo "------ CHANGELOG ------"
-          echo ${{ steps.generate.outputs.changelog }}
+          echo "${{ steps.generate.outputs.changelog }}"
