@@ -14,9 +14,8 @@ jobs:
       - name: Generate
         uses: tahirmt/test-simple-github-action@master
         with:
-          token: 'token_value'
-          outputFile: 'output_file_value'
-          since: 'since_value'
+          outputFile: './output_file_value.md'
+          since: 'v1.0.1'
           nextTag: 'next_tag_value'
           filter: 'filter_regex'
           labels: 'labels,comma,separated'
