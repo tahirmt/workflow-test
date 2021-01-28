@@ -23,6 +23,7 @@ jobs:
 
       - name: Check output
         run: |
+          ls
           changelog=${{ steps.generate.outputs.changelog }}
 
           echo "------ CHANGELOG ------"
