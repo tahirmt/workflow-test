@@ -13,7 +13,7 @@ jobs:
 
       - name: Generate
         id: generate
-        uses: tahirmt/changelog-generator-linux@master
+        uses: tahirmt/changelog-generator-linux@main
         with:
           since: 'v1.0.1'
           nextTag: 'next_tag_value'
