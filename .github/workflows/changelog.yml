@@ -6,7 +6,7 @@ on:
 
 jobs:
   changelog:
-    runs-on: lunux-latest
+    runs-on: linux-latest
 
     steps:
       - uses: actions/checkout@v2
