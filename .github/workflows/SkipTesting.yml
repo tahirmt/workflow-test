@@ -1,0 +1,19 @@
+name: Swift
+
+on:
+  push:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        one: ['one', 'two']
+        two: ['one', 'two']
+    if: matrix.one == 'one' && github.ref != 'refs/heads/testing-workflow'
+    runs-on: linux-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Say hello
+      run: echo "hello"
