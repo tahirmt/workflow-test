@@ -10,7 +10,6 @@ jobs:
       matrix:
         one: ['one', 'two']
         two: ['one', 'two']
-    if: matrix.one == 'one' && github.ref != 'refs/heads/testing-workflow'
     runs-on: linux-latest
 
     steps:
