@@ -14,6 +14,13 @@ jobs:
     runs-on: linux-latest
 
     steps:
+    - name: Set status
+      if: matrix.one == 'one' && github.ref == 'refs/heads/testing-workflow'
+      id: status
+      run: |
+        echo "::set-output name=status::skipped"
+
     - uses: actions/checkout@v2
     - name: Say hello
+      if: steps.status.outputs.status != 'skipped'
       run: echo "hello"
