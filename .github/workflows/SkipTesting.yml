@@ -10,7 +10,7 @@ jobs:
       matrix:
         one: ['one', 'two']
         two: ['one', 'two']
-    runs-on: linux-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Set status
