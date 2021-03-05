@@ -23,3 +23,7 @@ jobs:
     - name: Say hello
       if: steps.status.outputs.status != 'skipped'
       run: echo "hello"
+    
+    - name: Event
+      run: |
+        echo "github event: ${{ github.event_name }}"
