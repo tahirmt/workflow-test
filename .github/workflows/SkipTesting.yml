@@ -2,6 +2,9 @@ name: Swift
 
 on:
   push:
+  pull_request:
+    types:
+      - synchronize
 
 jobs:
   test:
