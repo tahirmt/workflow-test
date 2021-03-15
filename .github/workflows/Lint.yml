@@ -24,7 +24,6 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
       - uses: tahirmt/swiftlint-action@main
         with:
           version: 0.43.0
