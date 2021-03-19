@@ -2,10 +2,7 @@ name: Check conflict
 
 on:
   pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
+    types: [opened, synchronize, reopened]
 jobs:
   check:
     runs-on: ubuntu-latest
