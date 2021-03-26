@@ -38,7 +38,16 @@ jobs:
           echo ${{ github.event.number }}
           echo ${{ github.event.pull_request }}
           
-          
+      - name: Run ruby
+        run: |
+          pull_request=${{ github.event.pull_request }}
+          postCommentResult=$(ruby -e '
+            require "json"
+            require "rubygems"
+            require "faraday"
+
+            puts '$pull_request'
+          ')
           
           
           
