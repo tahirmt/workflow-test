@@ -48,6 +48,6 @@ jobs:
 
             puts '$pull_request'
           ')
-          
+          echo $postCommentResult
           
           
