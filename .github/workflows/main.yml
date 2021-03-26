@@ -25,11 +25,20 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo Hello, world!
+        env:
+          PULL_REQUEST: ${{ github.event.number }}
+        run: |
+          echo Hello, world!
+          echo "PUll $PULL_REQUEST"
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
           echo ${{ github.event.number }}
-          echo ${{ github.event.pull_request }} | jq '.'
+          echo ${{ github.event.pull_request }}
+          
+          
+          
+          
+          
