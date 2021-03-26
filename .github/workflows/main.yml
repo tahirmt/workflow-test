@@ -45,8 +45,8 @@ jobs:
             require "json"
             require "rubygems"
             require "faraday"
-
-            puts '$pull_request'
+            pull='$pull_request'
+            puts pull.to_s
           ')
           echo $postCommentResult
           
