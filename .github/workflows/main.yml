@@ -42,6 +42,9 @@ jobs:
           echo $(git log -1 --pretty=format:"%s")
           echo $(git log -5 --pretty=format:"%s")
           
+          echo $GITHUB_REF
+          echo $GITHUB_HEAD_REF
+          
       - name: Run ruby
         run: |
           pull_request=${{ github.event.pull_request }}
