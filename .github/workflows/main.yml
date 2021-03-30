@@ -42,8 +42,10 @@ jobs:
           echo $(git log -1 --pretty=format:"%s")
           echo $(git log -5 --pretty=format:"%s")
           
-          echo $GITHUB_REF
-          echo $GITHUB_HEAD_REF
+          echo "ref $GITHUB_REF"
+          echo "head ref $GITHUB_HEAD_REF"
+          echo "ref 2 ${{ github.ref }}"
+          echo "head ref 2 ${{ github.head_ref }}"
           
       - name: Run ruby
         run: |
