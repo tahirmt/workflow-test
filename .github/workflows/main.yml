@@ -16,7 +16,7 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -64,7 +64,7 @@ jobs:
               for reviewer in "${REVIEWERS[@]}"
               do
                 echo "reviewer $reviewer"
-                echo "reviewer $reviewer.login"
+                echo "reviewer $reviewer"
               done
           fi
           
@@ -81,7 +81,7 @@ jobs:
             require "rubygems"
             require "faraday"
 
-            puts ${{ github.event.pull_request.labels }}
+            puts ${{ github.event.pull_request.labels }}.length
           ')
           echo $postCommentResult
           
