@@ -76,13 +76,13 @@ jobs:
           
       - name: Run ruby
         run: |
-          pull_request=${{ github.event.pull_request }}
+          labels=${{ github.event.pull_request.labels }}
           postCommentResult=$(ruby -e '
             require "json"
             require "rubygems"
             require "faraday"
-            pull='$pull_request'
-            puts pull.requested_reviewers
+            label_values='$labels'
+            puts label_values
           ')
           echo $postCommentResult
           
