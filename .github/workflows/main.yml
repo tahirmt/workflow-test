@@ -44,6 +44,7 @@ jobs:
           echo "labels ${{ github.event.pull_request.labels }}"
           
           LABELS=${{ github.event.pull_request.labels }}
+          echo "labels count ${#LABELS[@]}"
           
           if [ ${#LABELS[@]} -eq 0 ]; then
               echo "No labels"
