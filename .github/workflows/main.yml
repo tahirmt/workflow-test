@@ -53,10 +53,17 @@ jobs:
           
           REVIEWERS=${{ github.event.pull_request.requested_reviewers }}
           
+          echo "reviewers count ${#REVIEWERS[@]}"
+
           if [ ${#REVIEWERS[@]} -eq 0 ]; then
               echo "No reviewers"
           else
               echo "Has some reviewers"
+              
+              for reviewer in "${REVIEWERS[@]}"
+              do
+                echo "reviewer ${{ reviewer.login }}"
+              done
           fi
           
           echo "ref $GITHUB_REF"
