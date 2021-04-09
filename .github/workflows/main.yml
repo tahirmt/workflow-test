@@ -44,9 +44,9 @@ jobs:
           echo "labels ${{ github.event.pull_request.labels }}"
           
           LABELS=${{ github.event.pull_request.labels }}
-          echo "labels count ${#LABELS[@]}"
+          echo "labels count ${!LABELS[*]}"
           
-          if [ ${#LABELS[@]} -eq 0 ]; then
+          if [ ${!LABELS[*]} -eq 0 ]; then
               echo "No labels"
           else
               echo "Has some labels"
@@ -56,7 +56,7 @@ jobs:
           
           echo "reviewers count ${!REVIEWERS[*]}"
 
-          if [ ${#REVIEWERS[@]} -eq 0 ]; then
+          if [ ${!REVIEWERS[*]} -eq 0 ]; then
               echo "No reviewers"
           else
               echo "Has some reviewers"
