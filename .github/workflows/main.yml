@@ -63,6 +63,7 @@ jobs:
           echo "head ref $GITHUB_HEAD_REF"
           echo "ref 2 ${{ github.ref }}"
           echo "head ref 2 ${{ github.head_ref }}"
+        shell: bash
           
       - name: Run ruby
         run: |
