@@ -81,12 +81,7 @@ jobs:
             require "rubygems"
             require "faraday"
 
-            label_values=${{ github.event.pull_request.labels }}
             puts ${{ github.event.pull_request.labels }}
-            unbound_method = Array.instance_method(:length)
-            bound_method = unbound_method.bind(label_values)
-            
-            puts bound_method.call #=> 4
           ')
           echo $postCommentResult
           
