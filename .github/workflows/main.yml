@@ -43,7 +43,7 @@ jobs:
           echo $(git log -5 --pretty=format:"%s")
           echo "labels ${{ github.event.pull_request.labels }}"
           
-          LABELS=(${{ github.event.pull_request.labels }})
+          LABELS=("${{ github.event.pull_request.labels }}")
           echo "labels count ${!LABELS[*]}"
           
           if [ ${!LABELS[*]} -eq 0 ]; then
@@ -52,7 +52,7 @@ jobs:
               echo "Has some labels"
           fi
           
-          REVIEWERS=(${{ github.event.pull_request.requested_reviewers }})
+          REVIEWERS=("${{ github.event.pull_request.requested_reviewers }}")
           
           echo "reviewers count ${!REVIEWERS[*]}"
 
