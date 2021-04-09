@@ -46,9 +46,17 @@ jobs:
           LABELS=${{ github.event.pull_request.labels }}
           
           if [ ${#LABELS[@]} -eq 0 ]; then
-              echo "No errors, hooray"
+              echo "No labels"
           else
-              echo "Oops, something went wrong..."
+              echo "Has some labels"
+          fi
+          
+          REVIEWERS=${{ github.event.pull_request.requested_reviewers }}
+          
+          if [ ${#REVIEWERS[@]} -eq 0 ]; then
+              echo "No reviewers"
+          else
+              echo "Has some reviewers"
           fi
           
           echo "ref $GITHUB_REF"
