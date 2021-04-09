@@ -54,7 +54,7 @@ jobs:
           
           REVIEWERS=(${{ github.event.pull_request.requested_reviewers }})
           
-          echo "reviewers count ${#{{ github.event.pull_request.requested_reviewers }}[@]}"
+          echo "reviewers count ${!REVIEWERS[*]}"
 
           if [ ${#REVIEWERS[@]} -eq 0 ]; then
               echo "No reviewers"
