@@ -43,7 +43,7 @@ jobs:
           echo $(git log -5 --pretty=format:"%s")
           echo "labels ${{ github.event.pull_request.labels }}"
           
-          LABELS=("${{ github.event.pull_request.labels }}")
+          LABELS=${{ github.event.pull_request.labels }}
           echo "labels count ${!LABELS[*]}"
           printf '%s\n' "${LABELS[@]}"
           
