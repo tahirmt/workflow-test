@@ -83,7 +83,11 @@ jobs:
             require "faraday"
 
             label_values='$labels'
-            puts label_values.length
+            unbound_method = Array.instance_method(:length)
+            ary = [1,2,3,4]
+            bound_method = unbound_method.bind(label_values)
+            
+            puts bound_method.call #=> 4
           ')
           echo $postCommentResult
           
