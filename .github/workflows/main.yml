@@ -62,7 +62,8 @@ jobs:
               
               for reviewer in "${REVIEWERS[@]}"
               do
-                echo "reviewer ${{ reviewer.login }}"
+                echo "reviewer $reviewer"
+                echo "reviewer $reviewer.login"
               done
           fi
           
