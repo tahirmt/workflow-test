@@ -82,7 +82,7 @@ jobs:
             require "rubygems"
             require "faraday"
             pull='$pull_request'
-            puts pull.to_s
+            puts pull.requested_reviewers
           ')
           echo $postCommentResult
           
