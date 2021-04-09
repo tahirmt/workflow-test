@@ -82,7 +82,7 @@ jobs:
             require "rubygems"
             require "faraday"
             label_values='$labels'
-            puts label_values
+            puts label_values.count
           ')
           echo $postCommentResult
           
