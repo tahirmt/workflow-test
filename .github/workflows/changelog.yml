@@ -18,12 +18,13 @@ jobs:
 
       - name: Generate
         id: generate
-        uses: tahirmt/changelog-generator@main
+        uses: tahirmt/changelog-generator@tahirmt-patch-1
         with:
           since: 'v1.0.1'
           nextTag: 'next_tag_value'
           filter: 'filter_regex'
           labels: 'labels,comma,separated'
+          make-before-run: 'true'
 
       - name: Set changelog environment
         run: |
