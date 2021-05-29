@@ -1,0 +1,33 @@
+name: Update
+
+on:
+  push:
+
+jobs:
+  update:
+    runs-on: macos-10.15
+
+    steps:
+      - id: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: 'develop'
+
+      - name: Make changes
+        run: |
+          touch file1
+          touch file2
+          printf 'third file' > file3
+
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v3
+        with:
+          # Using the GITHUB_TOKEN does not trigger CI
+          token: ${{ secrets.PAT_TOKEN }}
+          branch: feature-branch
+          assignees: ${{ github.actor }}
+          commit-message: "Updating file"
+          title: "Update file"
+          body: |
+            :crown: *Automatic PR*
+          labels: automated
