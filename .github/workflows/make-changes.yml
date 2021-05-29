@@ -19,6 +19,7 @@ jobs:
           touch file2
           printf 'third file' > file3
           printf 'fourth file' > file4
+          printf 'fifth file' > file5
 
       - name: Create PR
         uses: peter-evans/create-pull-request@v3
