@@ -23,7 +23,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           # Using the GITHUB_TOKEN does not trigger CI
-          token: ${{ secrets.PAT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           branch: feature-branch
           assignees: ${{ github.actor }}
           commit-message: "Updating file"
