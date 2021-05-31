@@ -14,7 +14,7 @@ jobs:
       - name: Create branch
         run: |
           git checkout -b merge-my-best-feature
-          git push -u origin merge-my-best-feature --force
+          # git push -u origin merge-my-best-feature --force
       - name: Create Pull Request
         uses: scorebet/pull-request@v2
         with:
