@@ -11,6 +11,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Create branch
+        run: git checkout -b merge-my-best-feature
       - name: Create Pull Request
         uses: scorebet/pull-request@v2
         with:
