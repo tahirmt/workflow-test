@@ -3,7 +3,7 @@ name: Create PR
 on:
   push:
     branches:
-      - feature-branch
+      - my-best-feature
 
 jobs:
   create-branch:
@@ -14,7 +14,7 @@ jobs:
       - name: Create Pull Request
         uses: scorebet/pull-request@v2
         with:
-          source_branch: "merge-feature-branch"                     # If blank, default: triggered branch
+          source_branch: "merge-my-best-feature"                     # If blank, default: triggered branch
           destination_branch: "develop"          # If blank, default: master
           pr_title: "Pull ${{ github.ref }} into develop"
           pr_body: ":crown: *An automated PR to keep develop up to date*"  # Full markdown support, requires pr_title to be set
