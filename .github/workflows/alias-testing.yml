@@ -11,15 +11,19 @@ jobs:
       - run: |
           # create alias
           echo "homels=ls $HOME" >> $GITHUB_ENV
+        shell: bash
 
       - name: Test it out
         run: |
           echo "testing out the alias"
           alias homels='ls $HOME'
           homels
+        shell: bash
           
       - name: Test export
         run: export TEST_VARIABLE="hello world"
+        shell: bash
         
       - name: Print exported
         run: echo $TEST_VARIABLE
+        shell: bash
