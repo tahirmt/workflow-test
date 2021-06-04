@@ -11,11 +11,12 @@ jobs:
       - run: |
           # create alias
           alias homels='ls $HOME'
+          echo "homels='ls $HOME'" >> $GITHUB_ENV
 
       - name: Test it out
         run: |
           echo "testing out the alias"
-          homels
+          ${{ env.homels }}
           
       - name: Test export
         run: export TEST_VARIABLE="hello world"
