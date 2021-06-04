@@ -10,8 +10,7 @@ jobs:
     steps:
       - run: |
           # create alias
-          alias homels='ls $HOME'
-          echo "homels='ls $HOME'" >> $GITHUB_ENV
+          echo "homels=ls $HOME" >> $GITHUB_ENV
 
       - name: Test it out
         run: |
