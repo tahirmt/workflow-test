@@ -15,7 +15,7 @@ jobs:
       - name: Test it out
         run: |
           echo "testing out the alias"
-          alias homels='${{ env.homels }}'
+          alias homels='ls $HOME'
           homels
           
       - name: Test export
