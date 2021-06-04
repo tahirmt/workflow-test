@@ -16,7 +16,8 @@ jobs:
       - name: Test it out
         run: |
           echo "testing out the alias"
-          ${{ env.homels }}
+          alias homels='${{ env.homels }}'
+          homels
           
       - name: Test export
         run: export TEST_VARIABLE="hello world"
