@@ -1,0 +1,126 @@
+name: Bump Version
+
+on:
+  workflow_dispatch:
+    inputs:
+      isMajor:
+        description: 'Major Update'
+        required: true
+        default: 'false'
+      isMinor:
+        description: 'Minor Update'
+        required: true
+        default: 'false'
+      newVersion: 
+        description: 'New Version'
+        required: false
+
+jobs:
+  create-release:
+    runs-on: macos-10.15
+    
+    steps:
+      - name: Check Acccess
+        uses: sushichop/action-repository-permission@v1
+        with:
+          required-permission: admin
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: 'develop'
+
+      - name: Import GPG key
+        id: import_gpg
+        uses: crazy-max/ghaction-import-gpg@v3
+        with:
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+
+      - name: setup git identity
+        id: git-identity
+        run: |
+          git config --global user.name 'Mahmood Tahir'
+          git config --global user.email 'mahmood.tahir@thescore.com'
+          git config --global commit.gpgsign true
+          
+      - name: Create branch
+        run: git checkout -b create-release
+      
+      - id: update-version
+        name: Update version
+        working-directory: Sources
+        run: |
+          APP_INFO_PLIST="TSCoreKit/Info.plist"
+          current_app_version="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' $APP_INFO_PLIST)"
+          if [ ! -z "${{ github.event.inputs.newVersion }}" ]; then
+            new_app_version=${{ github.event.inputs.newVersion }}
+            
+            #convert the new version into the SemVer format
+            new_app_version="$(echo $new_app_version | awk 'BEGIN { FS="." } { print $1+0 "." $2+0 "." $3+0 }')"
+
+            if [ $new_app_version == $current_app_version ]; then
+              echo "The new version cannot be the same as the current version $current_app_version"
+              exit 1
+            fi
+
+            major="$(echo $current_app_version | awk 'BEGIN { FS="." } { print $1 }')"
+            minor="$(echo $current_app_version | awk 'BEGIN { FS="." } { print $2 }')"
+            patch="$(echo $current_app_version | awk 'BEGIN { FS="." } { print $3 }')"
+
+            new_major="$(echo $new_app_version | awk 'BEGIN { FS="." } { print $1 }')"
+            new_minor="$(echo $new_app_version | awk 'BEGIN { FS="." } { print $2 }')"
+            new_patch="$(echo $new_app_version | awk 'BEGIN { FS="." } { print $3 }')"
+            
+            if [ $new_major -lt $major ]; then
+              echo "The new version $new_app_version cannot be less than the current version $current_app_version"
+              exit 1
+            elif [ $new_major -eq $major ]; then
+              if [ $new_minor -lt $minor ]; then
+                echo "The new version $new_app_version cannot be less than the current version $current_app_version"
+                exit 1
+              elif [ $new_minor -eq $minor ]; then
+                if [ $new_patch -lt $patch ]; then
+                  echo "The new version $new_app_version cannot be less than the current version $current_app_version"
+                  exit 1
+                fi
+              fi
+            fi
+          elif [ ${{ github.event.inputs.isMajor }} == 'true' ]; then
+            new_app_version="$(echo $current_app_version | awk 'BEGIN { FS="." } { print $1+1 ".0" ".0" }')"
+          elif [ ${{ github.event.inputs.isMinor }} == 'true' ]; then
+            new_app_version="$(echo $current_app_version | awk 'BEGIN { FS="." } { print $1 "." $2+1 ".0" }')"
+          else
+            new_app_version="$(echo $current_app_version | awk 'BEGIN { FS="." } { print $1 "." $2 "." $3+1 }')"
+          fi
+
+          echo "New app version is $new_app_version"
+          echo "::set-output name=new_app_version::$new_app_version"
+      
+      - name: Update plist files
+        working-directory: Sources
+        run: |
+          new_app_version=${{ steps.update-version.outputs.new_app_version }}
+          # Update the version
+          echo "Updating to $new_app_version"
+          agvtool new-marketing-version $new_app_version
+          
+      - name: Update podspec files
+        run: |
+          new_app_version=${{ steps.update-version.outputs.new_app_version }}
+          find . -type f -name "*.podspec" -print0 | xargs -0 sed -i '' "s/pod_version = .*/pod_version = \"$new_app_version\"/g"
+          
+      - name: Push branch
+        run: |
+          git push origin create-release --force 
+          
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: create-release
+          base: develop
+          committer: Mahmood Tahir <mahmood.tahir@thescore.com>
+          commit-message: "Bump version number to ${{ steps.update-version.outputs.new_app_version }}"
+          title: "Bump version to ${{ steps.update-version.outputs.new_app_version }}"
+          body: ":crown: *Bump version number to ${{ steps.update-version.outputs.new_app_version }}*"  # Full markdown support, requires pr_title to be set
