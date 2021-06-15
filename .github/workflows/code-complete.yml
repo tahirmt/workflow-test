@@ -1,0 +1,25 @@
+name: Code Complete
+
+on: 
+  workflow_dispatch:
+
+jobs:  
+  code-complete:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        ref: release-candidate
+
+    - name: Reset branch
+      run: |
+        git fetch origin develop:develop
+        git reset --hard develop
+    
+    - name: Create PR
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        branch: code-complete-develop
+        title: "Code complete"
+        body: ":crown: *Code complete*"
