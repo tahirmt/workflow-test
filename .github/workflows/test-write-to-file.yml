@@ -1,0 +1,38 @@
+name: Test write to file
+
+on: 
+  push:
+
+jobs:
+  write-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Write single line to file
+        uses: tahirmt/action-write-to-file@create-add-to-file-action
+        with:
+          contents: 'Hello world'
+          path: './one.txt'
+
+      - run: echo "$(cat ./one.txt)"
+
+      - name: Write multi line to file
+        uses: tahirmt/action-write-to-file@create-add-to-file-action
+        with:
+          contents: |
+            Hello 
+            World
+            !!
+          path: './two.txt'
+
+      - run: echo "$(cat ./two.txt)"
+
+      - name: Write secret to file
+        uses: tahirmt/action-write-to-file@create-add-to-file-action
+        with:
+          contents: ${{ secrets.TEST_CONTENTS }}
+          path: './three.txt'
+
+      - run: echo "$(cat ./three.txt)"
