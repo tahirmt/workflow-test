@@ -1,0 +1,27 @@
+name: RC -> Develop
+
+on: 
+  push:
+    branches:
+      - release-candidate
+
+jobs:  
+  code-complete:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        ref: develop
+
+    - name: Reset branch
+      run: |
+        git fetch origin release-candidate:release-candidate
+        git reset --hard release-candidate
+    
+    - name: Create PR
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        branch: back-merge-rc-develop
+        title: "RC -> Develop"
+        body: ":crown: *Bringing RC to develop*"
