@@ -1,0 +1,21 @@
+name: Check conflict
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - master
+      - develop
+      - tahirmt-patch-*
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    if: github.event.name == 'pull_request'
+    
+    steps:
+      - name: Check conflict
+        run: |
+          if [[ "${{ github.event.pull_request.mergeable }}" == "false" ]]; then
+            echo "PR has conflicts
+            exit 1
+          fi

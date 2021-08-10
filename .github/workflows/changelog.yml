@@ -1,0 +1,37 @@
+name: Generate changelog
+
+on: 
+  workflow_dispatch:
+  push:
+
+jobs:
+  changelog:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Generate
+        id: generate
+        uses: tahirmt/changelog-generator@main
+        with:
+          since: 'v1.0.1'
+          nextTag: 'next_tag_value'
+          filter: 'filter_regex'
+          labels: 'labels,comma,separated'
+
+      - name: Set changelog environment
+        run: |
+          changelog=$(echo "${{ steps.generate.outputs.changelog }}" | base64 --decode)
+
+          echo 'CHANGELOG_VALUE<<EOF' >> $GITHUB_ENV
+          echo "$changelog" >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
+
+      - name: Check output
+        run: |
+          changelog=$(echo "${{ steps.generate.outputs.changelog }}" | base64 --decode)
+          echo "------ CHANGELOG ------"
+          echo "$changelog"
+          echo "------------ AGAIN --------"
+          echo "${{ env.CHANGELOG_VALUE }}"

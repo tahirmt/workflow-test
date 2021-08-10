@@ -1,0 +1,16 @@
+name: Create merge branch and PR
+
+on: 
+  push:
+    branches: 
+      - develop
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+#       - name: Setup tmate session
+#         uses: mxschmitt/action-tmate@v3
