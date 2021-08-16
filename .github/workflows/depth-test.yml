@@ -27,11 +27,11 @@ jobs:
           depth="100"
           echo "::set-output name=depth::$depth"
           
-      - run: echo "${{ steps.depth.depth }}"
+      - run: echo "${{ steps.depth.outputs.depth }}"
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         with:
-          fetch-depth: ${{ steps.depth.depth }}
+          fetch-depth: ${{ steps.depth.outputs.depth }}
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
