@@ -1,0 +1,13 @@
+name: Runs on hello
+
+on:
+  pull_request:
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    if: ${{ startsWith(github.event.pull_request.head.ref, 'hello/w') }}
+
+    steps:
+      - name: Hello
+        run: echo Hello
