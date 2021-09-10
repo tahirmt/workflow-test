@@ -5,8 +5,10 @@ runs:
 
   steps:
     - name: check value
+      env:
+        HELLO: ${{ secrets.HELLO }}
       run: |
-        if [[ "${{ secrets.HELLO }}" == "Hello world!" ]]; then
+        if [[ "$HELLO" == "Hello world!" ]]; then
           echo "The secret is matching hello world string"
         else
           echo "The secret does not match"
