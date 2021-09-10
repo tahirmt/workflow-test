@@ -1,0 +1,14 @@
+name: Check Secret
+
+runs:
+  using: composite
+
+  steps:
+    - name: check value
+      run: |
+        if [[ "${{ secrets.HELLO }}" == "Hello world!" ]]; then
+          echo "The secret is matching hello world string"
+        else
+          echo "The secret does not match"
+        fi
+      shell: bash
