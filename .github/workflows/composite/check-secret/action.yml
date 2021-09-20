@@ -4,6 +4,11 @@ runs:
   using: composite
 
   steps:
+    - name: Runner
+      run: |
+        if [[ "$RUNNER_OS" == "macOS" ]]; then
+          echo "mac"
+        fi
     - name: check value
       run: |
         if [[ "$HELLO" == "Hello world!" ]]; then
