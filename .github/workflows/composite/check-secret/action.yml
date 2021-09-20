@@ -6,6 +6,7 @@ runs:
   steps:
     - name: Runner
       run: |
+        echo "$RUNNER_OS"
         if [[ "$RUNNER_OS" == "macOS" ]]; then
           echo "mac"
         fi
