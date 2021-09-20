@@ -9,6 +9,7 @@ runs:
         if [[ "$RUNNER_OS" == "macOS" ]]; then
           echo "mac"
         fi
+      shell: bash
     - name: check value
       run: |
         if [[ "$HELLO" == "Hello world!" ]]; then
