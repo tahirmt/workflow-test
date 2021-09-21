@@ -4,6 +4,11 @@ runs:
   using: composite
 
   steps:
+    - name: Path
+      run: |
+        # hello
+        echo "tools cache path $RUNNER_TOOL_CACHE"
+      shell: bash
     - name: Runner
       run: |
         echo "$RUNNER_OS"
