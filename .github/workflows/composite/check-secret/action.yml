@@ -1,0 +1,26 @@
+name: Check Secret
+
+runs:
+  using: composite
+
+  steps:
+    - name: Path
+      run: |
+        # hello
+        echo "tools cache path $RUNNER_TOOL_CACHE"
+      shell: bash
+    - name: Runner
+      run: |
+        echo "$RUNNER_OS"
+        if [[ "$RUNNER_OS" == "macOS" ]]; then
+          echo "mac"
+        fi
+      shell: bash
+    - name: check value
+      run: |
+        if [[ "$HELLO" == "Hello world!" ]]; then
+          echo "The secret is matching hello world string"
+        else
+          echo "The secret does not match"
+        fi
+      shell: bash
