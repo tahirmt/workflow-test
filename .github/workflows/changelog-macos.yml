@@ -1,12 +1,12 @@
-name: Generate changelog
+name: Generate changelog mac
 
 on: 
   workflow_dispatch:
   push:
 
 jobs:
-  changelog:
-    runs-on: ubuntu-latest
+  changelog-macos:
+    runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v2
