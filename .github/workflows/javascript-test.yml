@@ -1,0 +1,23 @@
+name: Javascript tester
+
+on: 
+  push:
+
+jobs:  
+  test-js:
+    runs-on: macos-latest
+    steps:
+    - uses: tahirmt/test-javascript-github-action@main
+    - uses: actions/checkout@v2
+
+    - uses: actions/cache@v2
+      with:
+        path: generated-file.txt
+        key: generated-file-key-${{ hashFiles('generated-file-hash.txt') }}"
+        restore-keys: |
+          generated-file-key-
+    
+    - name: Generate file
+      run: |
+        echo "Hello World" > generated-file.txt
+        echo "Hello World" > generated-file-hash.txt
