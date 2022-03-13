@@ -8,7 +8,7 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: tahirmt/test-javascript-github-action@main
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
 
     - uses: actions/cache@v2
       with:
