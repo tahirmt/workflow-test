@@ -14,3 +14,5 @@ jobs:
         uses: ./actions/slow-tests
         with:
           report_paths: 'junit_report/*.junit'
+          threshold: 5.0
+          fail_threshold: 11.0
