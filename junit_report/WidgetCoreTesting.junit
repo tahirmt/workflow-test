@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="128" failures="0">
+    <testsuite name="TSM Widget CoreTests" tests="128" failures="0" skipped="0" time="5.379833459854126">
+        <properties>
+          <property name="Configuration" value="Test Scheme Action"/>
+        </properties>
+        <testcase classname="DeeplinkSpec" name="a_Deeplink__when_using_a_small_widget__should_return_a_deeplink_with_a_widget_parameter()" time="0.04280698299407959">
+        </testcase>
+        <testcase classname="BoxScoreSmallOffSeasonPlaceholderSpec" name="a_BoxScoreSmallOffSeasonPlaceholderSpec__should_render_correctly()" time="0.6589150428771973">
+        </testcase>
+        <testcase classname="BoxScoreViewModelSpec" name="a_BoxScoreViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_a_large_screen_size__should_return_the_correct_sizes()" time="0.004562973976135254">
+        </testcase>
+        <testcase classname="BoxScoreViewModelSpec" name="a_BoxScoreViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_a_small_screen_size__should_return_the_correct_sizes()" time="0.003580927848815918">
+        </testcase>
+        <testcase classname="BoxScoreViewModelSpec" name="a_BoxScoreViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_a_very_small_screen_size__should_return_the_correct_sizes()" time="0.003607034683227539">
+        </testcase>
+        <testcase classname="BoxScoreViewModelSpec" name="a_BoxScoreViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_an_extra_large_screen_size__should_return_the_correct_sizes()" time="0.0025260448455810547">
+        </testcase>
+        <testcase classname="MediumWidgetScalingOffseasonViewModelSpec" name="a_MediumWidgetScalingOffseasonViewModel__when_scaling_the_data_across_different_devices__when_the_device_has_a_large_screen_size__should_return_the_correct_sizes()" time="0.012905001640319824">
+        </testcase>
+        <testcase classname="MediumWidgetScalingOffseasonViewModelSpec" name="a_MediumWidgetScalingOffseasonViewModel__when_scaling_the_data_across_different_devices__when_the_device_has_a_medium_screen_size__should_return_the_correct_sizes()" time="0.005756974220275879">
+        </testcase>
+        <testcase classname="MediumWidgetScalingOffseasonViewModelSpec" name="a_MediumWidgetScalingOffseasonViewModel__when_scaling_the_data_across_different_devices__when_the_device_has_a_small_screen_size__should_return_the_correct_sizes()" time="0.004865050315856934">
+        </testcase>
+        <testcase classname="MediumWidgetScalingOffseasonViewModelSpec" name="a_MediumWidgetScalingOffseasonViewModel__when_scaling_the_data_across_different_devices__when_the_device_has_a_very_small_screen_size__should_return_the_correct_sizes()" time="0.0044089555740356445">
+        </testcase>
+        <testcase classname="MediumWidgetScalingOffseasonViewModelSpec" name="a_MediumWidgetScalingOffseasonViewModel__when_scaling_the_data_across_different_devices__when_the_device_has_an_extra_large_screen_size__should_return_the_correct_sizes()" time="0.004333019256591797">
+        </testcase>
+        <testcase classname="WidgetLeagueViewModelFactorySpec" name="a_WidgetLeagueViewModelFactory__should_return_correct_number_of_leagues()" time="0.0050389766693115234">
+        </testcase>
+        <testcase classname="WidgetLeagueViewModelFactorySpec" name="a_WidgetLeagueViewModelFactory__should_return_leagues_in_correct_order()" time="0.003448009490966797">
+        </testcase>
+        <testcase classname="LogoSizeSpec" name="a_LogoSizeSpec__when_requesting_the_logo_size__should_return_the_correct_size()" time="0.0016369819641113281">
+        </testcase>
+        <testcase classname="BoxScoreMediumViewPlaceholderSpec" name="a_BoxScoreMediumViewPlaceholder__should_render_correctly()" time="0.17291498184204102">
+        </testcase>
+        <testcase classname="BoxScoreSmallViewPlaceholderSpec" name="a_BoxScoreSmallViewSpec__should_render_correctly()" time="0.5102490186691284">
+        </testcase>
+        <testcase classname="WidgetTimelineEntryRelevanceFactorySpec" name="a_WidgetTimelineEntryRelevanceFactory__live_game__the_game_is_in_progress__should_return_a_medium_high_relevance_with_a_duration_of_600_seconds()" time="0.04061698913574219">
+        </testcase>
+        <testcase classname="WidgetTimelineEntryRelevanceFactorySpec" name="a_WidgetTimelineEntryRelevanceFactory__offseason__should_return_a_low_relevance()" time="0.0024710893630981445">
+        </testcase>
+        <testcase classname="WidgetTimelineEntryRelevanceFactorySpec" name="a_WidgetTimelineEntryRelevanceFactory__post_game__the_game_has_finished_3_hours_ago__should_return_a_high_relevance_with_a_duration_of_1800_seconds()" time="0.0025020837783813477">
+        </testcase>
+        <testcase classname="WidgetTimelineEntryRelevanceFactorySpec" name="a_WidgetTimelineEntryRelevanceFactory__post_game__the_game_has_finished_more_than_3_hours_ago__should_return_a_low_relevance_with_a_duration_of_2_30_hours()" time="0.0020830631256103516">
+        </testcase>
+        <testcase classname="WidgetTimelineEntryRelevanceFactorySpec" name="a_WidgetTimelineEntryRelevanceFactory__pre_game__6_hours_before_the_event__should_return_a_medium_relevance_with_a_duration_of_30_minutes()" time="0.001708984375">
+        </testcase>
+        <testcase classname="WidgetTimelineEntryRelevanceFactorySpec" name="a_WidgetTimelineEntryRelevanceFactory__pre_game__over_6_hours_before_the_event__should_return_a_low_relevance_with_a_duration_of_3_hours()" time="0.003036975860595703">
+        </testcase>
+        <testcase classname="WidgetTeamLoaderSpec" name="WidgetTeamLoader__should_return_the_logo_of_the_team()" time="0.057888031005859375">
+        </testcase>
+        <testcase classname="BoxScoreMediumViewEmptyStateSpec" name="a_BoxScoreMediumViewEmptyState__should_render_correctly()" time="0.6482620239257812">
+        </testcase>
+        <testcase classname="OffseasonViewModelSpec" name="an_OffseasonViewModel__when_creating_a_view_model_for_a_medium_widget__should_return_initialize_correctly()" time="0.0076400041580200195">
+        </testcase>
+        <testcase classname="OffseasonViewModelSpec" name="an_OffseasonViewModel__when_creating_a_view_model_for_a_small_widget__should_return_a_view_model_for_a_small_widget()" time="0.0018169879913330078">
+        </testcase>
+        <testcase classname="WidgetLeagueViewModelSpec" name="a_WidgetLeagueViewModel__should_return_a_view_model()" time="0.0337979793548584">
+        </testcase>
+        <testcase classname="SmallWidgetScalingTeamViewModelSpec" name="a_TeamViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_a_large_screen_size__should_return_the_correct_sizes()" time="0.0030080080032348633">
+        </testcase>
+        <testcase classname="SmallWidgetScalingTeamViewModelSpec" name="a_TeamViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_a_small_screen_size__should_return_the_correct_sizes()" time="0.0024330615997314453">
+        </testcase>
+        <testcase classname="SmallWidgetScalingTeamViewModelSpec" name="a_TeamViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_a_very_small_screen_size__should_return_the_correct_sizes()" time="0.0038208961486816406">
+        </testcase>
+        <testcase classname="SmallWidgetScalingTeamViewModelSpec" name="a_TeamViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_an_extra_large_screen_size__should_return_the_correct_sizes()" time="0.0030530691146850586">
+        </testcase>
+        <testcase classname="DateExtensionSpec" name="a_DateExtension__for_a_date_at_8_35_am__should_be_09_05_am_after_adding_30_minutes()" time="0.007879972457885742">
+        </testcase>
+        <testcase classname="DateExtensionSpec" name="a_DateExtension__for_a_date_at_8_35_am__should_return_the_difference_between_the_two_given_dates__which_is_60_minutes()" time="0.003309011459350586">
+        </testcase>
+        <testcase classname="DateExtensionSpec" name="a_DateExtension__same_week__should_return_right_value_if_2_given_dates_are_not_within_a_week()" time="0.009211063385009766">
+        </testcase>
+        <testcase classname="DateExtensionSpec" name="a_DateExtension__same_week__should_return_right_value_if_2_given_dates_are_within_a_week()" time="0.0026710033416748047">
+        </testcase>
+        <testcase classname="TeamViewModelSpec" name="a_TeamViewModelSpec__should_return_a_view_model()" time="0.0032160282135009766">
+        </testcase>
+        <testcase classname="WidgetSizeSpec" name="a_WidgetSize__when_comparing_if_a_large_size_is_greater_than_a_normal_size__should_return_true()" time="0.0014380216598510742">
+        </testcase>
+        <testcase classname="WidgetSizeSpec" name="a_WidgetSize__when_requesting_the_current_screen_size__when_the_device_has_a_large_screen_size__should_return_the_correct_size()" time="0.0025550127029418945">
+        </testcase>
+        <testcase classname="WidgetSizeSpec" name="a_WidgetSize__when_requesting_the_current_screen_size__when_the_device_has_a_small_screen_size__should_return_the_correct_size()" time="0.0028229951858520508">
+        </testcase>
+        <testcase classname="WidgetSizeSpec" name="a_WidgetSize__when_requesting_the_current_screen_size__when_the_device_has_a_very_large_screen_size__should_return_the_correct_size()" time="0.0014760494232177734">
+        </testcase>
+        <testcase classname="WidgetSizeSpec" name="a_WidgetSize__when_requesting_the_current_screen_size__when_the_device_has_a_very_small_screen_size__should_return_the_correct_size()" time="0.0010739564895629883">
+        </testcase>
+        <testcase classname="WidgetSizeSpec" name="a_WidgetSize__when_requesting_the_current_screen_size__when_the_the_device_has_a_regular_screen_size__should_return_the_correct_size()" time="0.0012929439544677734">
+        </testcase>
+        <testcase classname="BoxScoreSmallOffSeasonViewSpec" name="a_BoxScoreSmallOffSeasonView__should_render_correctly()" time="0.22989606857299805">
+        </testcase>
+        <testcase classname="DateFormatterSpec" name="a_DateFormatterSpec__display_time_as_string__12_hr_format__should_display_shortened_date_with_12_hour_format_correctly()" time="0.017740964889526367">
+        </testcase>
+        <testcase classname="DateFormatterSpec" name="a_DateFormatterSpec__display_time_as_string__12_hr_format__should_display_shortened_month_and_day_format_correctly()" time="0.0029670000076293945">
+        </testcase>
+        <testcase classname="DateFormatterSpec" name="a_DateFormatterSpec__display_time_as_string__24_hr_format__should_display_shortened_date_with_24_hour_format_correctly()" time="0.002091050148010254">
+        </testcase>
+        <testcase classname="DateFormatterSpec" name="a_DateFormatterSpec__display_time_as_string__24_hr_format__should_display_shortened_month_and_day_format_correctly()" time="0.002157926559448242">
+        </testcase>
+        <testcase classname="WidgetTimelineEntryFactorySpec" name="a_WidgetTimelineEntryFactory__in_progress__the_game_already_started__should_return_a_date_with_the_next_update_for_the_next_5_minutes()" time="0.003947019577026367">
+        </testcase>
+        <testcase classname="WidgetTimelineEntryFactorySpec" name="a_WidgetTimelineEntryFactory__off_season__should_return_a_date_to_update_in_the_next_3_hours()" time="0.004842996597290039">
+        </testcase>
+        <testcase classname="WidgetTimelineEntryFactorySpec" name="a_WidgetTimelineEntryFactory__post_game__the_game_finished_more_than_10_hours_ago__should_refresh_for_the_current_time()" time="0.0028339624404907227">
+        </testcase>
+        <testcase classname="WidgetTimelineEntryFactorySpec" name="a_WidgetTimelineEntryFactory__post_game__the_game_has_just_finished__should_return_a_date_with_the_next_update_for_the_next_10_hours_after_the_game_start_time()" time="0.0019450187683105469">
+        </testcase>
+        <testcase classname="WidgetTimelineEntryFactorySpec" name="a_WidgetTimelineEntryFactory__pre_game__half_hour_before_event__should_return_a_date_to_update_30_minutes_before_the_event()" time="0.003443002700805664">
+        </testcase>
+        <testcase classname="WidgetTimelineEntryFactorySpec" name="a_WidgetTimelineEntryFactory__pre_game__the_game_is_about_to_start__should_return_a_date_to_update_the_game_when_the_game_starts()" time="0.004240989685058594">
+        </testcase>
+        <testcase classname="WidgetTimelineEntryFactorySpec" name="a_WidgetTimelineEntryFactory__pre_game__three_days_before_the_event__should_return_a_date_to_update_in_the_next_3_hours()" time="0.0016530752182006836">
+        </testcase>
+        <testcase classname="WidgetTimelineEntryFactorySpec" name="a_WidgetTimelineEntryFactory__when_requesting_an_entry_creation__should_return_a_WrapperEntry_with_today_s_date()" time="0.042838096618652344">
+        </testcase>
+        <testcase classname="BoxScoreSmallViewEmptyStateSpec" name="a_BoxScoreSmallViewEmptyState__should_render_correctly()" time="0.5131759643554688">
+        </testcase>
+        <testcase classname="BoxScoreMediumEmptyStateViewModelSpec" name="a_BoxScoreMediumEmptyStateViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_a_large_screen_size__should_return_the_correct_sizes()" time="0.004382014274597168">
+        </testcase>
+        <testcase classname="BoxScoreMediumEmptyStateViewModelSpec" name="a_BoxScoreMediumEmptyStateViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_a_normal_screen_size__should_return_the_correct_sizes()" time="0.0035060644149780273">
+        </testcase>
+        <testcase classname="BoxScoreMediumEmptyStateViewModelSpec" name="a_BoxScoreMediumEmptyStateViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_a_small_screen_size__should_return_the_correct_sizes()" time="0.0033980607986450195">
+        </testcase>
+        <testcase classname="BoxScoreMediumEmptyStateViewModelSpec" name="a_BoxScoreMediumEmptyStateViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_a_very_small_screen_size__should_return_the_correct_sizes()" time="0.0023419857025146484">
+        </testcase>
+        <testcase classname="BoxScoreMediumEmptyStateViewModelSpec" name="a_BoxScoreMediumEmptyStateViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_an_extra_large_screen_size__should_return_the_correct_sizes()" time="0.003193974494934082">
+        </testcase>
+        <testcase classname="BoxScoreMediumOffSeasonViewSpec" name="a_BoxScoreMediumOffseasonView__should_render_correctly()" time="0.17848992347717285">
+        </testcase>
+        <testcase classname="BoxScoreSmallEmptyStateViewModelSpec" name="a_BoxScoreSmallEmptyStateViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_a_large_screen_size__should_return_the_correct_sizes()" time="0.00907599925994873">
+        </testcase>
+        <testcase classname="BoxScoreSmallEmptyStateViewModelSpec" name="a_BoxScoreSmallEmptyStateViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_a_normal_screen_size__should_return_the_correct_sizes()" time="0.0029799938201904297">
+        </testcase>
+        <testcase classname="BoxScoreSmallEmptyStateViewModelSpec" name="a_BoxScoreSmallEmptyStateViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_a_small_screen_size__should_return_the_correct_sizes()" time="0.004020094871520996">
+        </testcase>
+        <testcase classname="BoxScoreSmallEmptyStateViewModelSpec" name="a_BoxScoreSmallEmptyStateViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_a_very_small_screen_size__should_return_the_correct_sizes()" time="0.0020319223403930664">
+        </testcase>
+        <testcase classname="BoxScoreSmallEmptyStateViewModelSpec" name="a_BoxScoreSmallEmptyStateViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_an_extra_large_screen_size__should_return_the_correct_sizes()" time="0.004230976104736328">
+        </testcase>
+        <testcase classname="SmallWidgetScalingOffseasonViewModelSpec" name="a_SmallWidgetScalingOffseasonViewModel__when_scaling_the_data_across_different_devices__when_the_device_has_a_large_screen_size__should_return_the_correct_sizes()" time="0.0054100751876831055">
+        </testcase>
+        <testcase classname="SmallWidgetScalingOffseasonViewModelSpec" name="a_SmallWidgetScalingOffseasonViewModel__when_scaling_the_data_across_different_devices__when_the_device_has_a_medium_screen_size__should_return_the_correct_sizes()" time="0.0022341012954711914">
+        </testcase>
+        <testcase classname="SmallWidgetScalingOffseasonViewModelSpec" name="a_SmallWidgetScalingOffseasonViewModel__when_scaling_the_data_across_different_devices__when_the_device_has_a_small_screen_size__should_return_the_correct_sizes()" time="0.0035979747772216797">
+        </testcase>
+        <testcase classname="SmallWidgetScalingOffseasonViewModelSpec" name="a_SmallWidgetScalingOffseasonViewModel__when_scaling_the_data_across_different_devices__when_the_device_has_a_very_small_screen_size__should_return_the_correct_sizes()" time="0.0017769336700439453">
+        </testcase>
+        <testcase classname="SmallWidgetScalingOffseasonViewModelSpec" name="a_SmallWidgetScalingOffseasonViewModel__when_scaling_the_data_across_different_devices__when_the_device_has_an_extra_large_screen_size__should_return_the_correct_sizes()" time="0.0026390552520751953">
+        </testcase>
+        <testcase classname="BoxScoreMediumViewSpec" name="a_BoxScoreMediumView__for_a_live_game__should_render_correctly()" time="0.3707749843597412">
+        </testcase>
+        <testcase classname="BoxScoreMediumViewSpec" name="a_BoxScoreMediumView__for_soccer_teams__should_render_correctly()" time="0.16679799556732178">
+        </testcase>
+        <testcase classname="BoxScoreMediumViewSpec" name="a_BoxScoreMediumView__with_team_records__should_render_correctly()" time="0.14823698997497559">
+        </testcase>
+        <testcase classname="BoxScoreMediumViewSpec" name="a_BoxScoreMediumView__with_tv_providers__should_render_correctly()" time="0.15974199771881104">
+        </testcase>
+        <testcase classname="BoxScoreMediumViewSpec" name="a_BoxScoreMediumView__without_tv_providers_and_team_records__should_render_correctly()" time="0.13859593868255615">
+        </testcase>
+        <testcase classname="BoxScoreMediumPlaceholderViewModelSpec" name="a_BoxScoreMediumViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_a_large_screen_size__should_return_the_correct_sizes()" time="0.002624988555908203">
+        </testcase>
+        <testcase classname="BoxScoreMediumPlaceholderViewModelSpec" name="a_BoxScoreMediumViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_a_normal_screen_size__should_return_the_correct_sizes()" time="0.0036640167236328125">
+        </testcase>
+        <testcase classname="BoxScoreMediumPlaceholderViewModelSpec" name="a_BoxScoreMediumViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_a_small_screen_size__should_return_the_correct_sizes()" time="0.002618074417114258">
+        </testcase>
+        <testcase classname="BoxScoreMediumPlaceholderViewModelSpec" name="a_BoxScoreMediumViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_a_very_small_screen_size__should_return_the_correct_sizes()" time="0.0019960403442382812">
+        </testcase>
+        <testcase classname="BoxScoreMediumPlaceholderViewModelSpec" name="a_BoxScoreMediumViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_an_extra_large_screen_size__should_return_the_correct_sizes()" time="0.002837061882019043">
+        </testcase>
+        <testcase classname="TeamEventViewModelSpec" name="a_TeamEventViewModelSpec__for_cancelled_state__should_have_the_correct_values()" time="0.04396998882293701">
+        </testcase>
+        <testcase classname="TeamEventViewModelSpec" name="a_TeamEventViewModelSpec__for_delayed_state__should_have_the_correct_values()" time="0.0056760311126708984">
+        </testcase>
+        <testcase classname="TeamEventViewModelSpec" name="a_TeamEventViewModelSpec__for_final_state__should_have_the_correct_values()" time="0.004683017730712891">
+        </testcase>
+        <testcase classname="TeamEventViewModelSpec" name="a_TeamEventViewModelSpec__for_final_state__should_show__Final__OT___in_overtime_as_fallback()" time="0.004779934883117676">
+        </testcase>
+        <testcase classname="TeamEventViewModelSpec" name="a_TeamEventViewModelSpec__for_final_state__should_show_clock_label_in_overtime_if_available()" time="0.004850029945373535">
+        </testcase>
+        <testcase classname="TeamEventViewModelSpec" name="a_TeamEventViewModelSpec__for_in_progress_state__should_have_the_correct_values()" time="0.004629015922546387">
+        </testcase>
+        <testcase classname="TeamEventViewModelSpec" name="a_TeamEventViewModelSpec__for_postponed_state__should_have_the_correct_values()" time="0.00481104850769043">
+        </testcase>
+        <testcase classname="TeamEventViewModelSpec" name="a_TeamEventViewModelSpec__for_pre_game_state__for_medium_widget__should_have_the_correct_values_if_game_is_today()" time="0.011917948722839355">
+        </testcase>
+        <testcase classname="TeamEventViewModelSpec" name="a_TeamEventViewModelSpec__for_pre_game_state__for_medium_widget__should_have_the_correct_values_if_game_is_tomorrow()" time="0.006457090377807617">
+        </testcase>
+        <testcase classname="TeamEventViewModelSpec" name="a_TeamEventViewModelSpec__for_pre_game_state__for_small_widget__should_have_the_correct_values_if_game_is_today()" time="0.0035219192504882812">
+        </testcase>
+        <testcase classname="TeamEventViewModelSpec" name="a_TeamEventViewModelSpec__for_pre_game_state__if_game_is_within_one_week__should_have_the_correct_values_if_locale_is_12_hour_format()" time="0.0048580169677734375">
+        </testcase>
+        <testcase classname="TeamEventViewModelSpec" name="a_TeamEventViewModelSpec__for_pre_game_state__if_game_is_within_one_week__should_have_the_correct_values_if_locale_is_24_hour_format()" time="0.007609009742736816">
+        </testcase>
+        <testcase classname="TeamEventViewModelSpec" name="a_TeamEventViewModelSpec__for_pre_game_state__should_have_the_correct_values_if_game_is_not_in_same_week()" time="0.004629015922546387">
+        </testcase>
+        <testcase classname="TeamEventViewModelSpec" name="a_TeamEventViewModelSpec__for_suspended_state__should_have_the_correct_values()" time="0.0049239397048950195">
+        </testcase>
+        <testcase classname="TeamEventViewModelSpec" name="a_TeamEventViewModelSpec__should_return_a_view_model_for_a_medium_widget()" time="0.00601804256439209">
+        </testcase>
+        <testcase classname="TeamEventViewModelSpec" name="a_TeamEventViewModelSpec__should_return_a_view_model_for_a_small_widget()" time="0.007252931594848633">
+        </testcase>
+        <testcase classname="TeamEventViewModelSpec" name="a_TeamEventViewModelSpec__tv_providers__for_Canada__should_return_the_correct_TV_Provider()" time="0.008139967918395996">
+        </testcase>
+        <testcase classname="TeamEventViewModelSpec" name="a_TeamEventViewModelSpec__tv_providers__for_outside_Canada_and_the_United_States__should_return_the_correct_TV_provider()" time="0.003924012184143066">
+        </testcase>
+        <testcase classname="TeamEventViewModelSpec" name="a_TeamEventViewModelSpec__tv_providers__for_the_United_States__should_return_the_correct_TV_provider()" time="0.0037970542907714844">
+        </testcase>
+        <testcase classname="TeamEventViewModelSpec" name="a_TeamEventViewModelSpec__when_scaling_the_widget__when_the_header_has_a_short_text__should_return_the_extra_large_font_size()" time="0.004510998725891113">
+        </testcase>
+        <testcase classname="TeamEventViewModelSpec" name="a_TeamEventViewModelSpec__when_scaling_the_widget__when_the_screen_size_is_large__should_return_the_correct_scale()" time="0.004040956497192383">
+        </testcase>
+        <testcase classname="TeamEventViewModelSpec" name="a_TeamEventViewModelSpec__when_scaling_the_widget__when_the_screen_size_is_medium__should_return_the_correct_scale()" time="0.005486965179443359">
+        </testcase>
+        <testcase classname="TeamEventViewModelSpec" name="a_TeamEventViewModelSpec__when_scaling_the_widget__when_the_screen_size_is_small__should_return_the_correct_scale()" time="0.004665970802307129">
+        </testcase>
+        <testcase classname="TeamEventViewModelSpec" name="a_TeamEventViewModelSpec__when_scaling_the_widget__when_the_screen_size_is_the_largest__should_return_the_correct_scale()" time="0.005488991737365723">
+        </testcase>
+        <testcase classname="TeamEventViewModelSpec" name="a_TeamEventViewModelSpec__when_there_are_standings__should_return_a_view_model_for_a_medium_widget_with_standings()" time="0.004721999168395996">
+        </testcase>
+        <testcase classname="WidgetEventsLoaderSpec" name="a_WidgetEventsLoader__when_there_is_a_final_event__should_return_the_final_event()" time="0.08672606945037842">
+        </testcase>
+        <testcase classname="WidgetEventsLoaderSpec" name="a_WidgetEventsLoader__when_there_is_a_live_event__should_return_the_live_event()" time="0.009477972984313965">
+        </testcase>
+        <testcase classname="WidgetEventsLoaderSpec" name="a_WidgetEventsLoader__when_there_is_an_preGame_event__should_return_the_preGame_event()" time="0.0056580305099487305">
+        </testcase>
+        <testcase classname="MediumWidgetScalingTeamViewModelSpec" name="a_TeamViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_a_large_screen_size__should_return_the_correct_sizes()" time="0.004871010780334473">
+        </testcase>
+        <testcase classname="MediumWidgetScalingTeamViewModelSpec" name="a_TeamViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_a_small_screen_size__should_return_the_correct_sizes()" time="0.001958012580871582">
+        </testcase>
+        <testcase classname="MediumWidgetScalingTeamViewModelSpec" name="a_TeamViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_a_very_small_screen_size__should_return_the_correct_sizes()" time="0.0029959678649902344">
+        </testcase>
+        <testcase classname="MediumWidgetScalingTeamViewModelSpec" name="a_TeamViewModel__when_scaling_the_data_for_different_screen_sizes__when_the_device_has_an_extra_large_screen_size__should_return_the_correct_sizes()" time="0.0023070573806762695">
+        </testcase>
+        <testcase classname="BoxScoreSmallViewSpec" name="a_BoxScoreSmallView__for_a_live_game__should_render_correctly()" time="0.19134998321533203">
+        </testcase>
+        <testcase classname="BoxScoreSmallViewSpec" name="a_BoxScoreSmallView__should_render_correctly()" time="0.12144994735717773">
+        </testcase>
+        <testcase classname="WidgetFavoritesTeamsLoaderSpec" name="a_WidgetFavoritesTeamsLoader__should_handle_errors_correctly()" time="0.014621973037719727">
+        </testcase>
+        <testcase classname="WidgetFavoritesTeamsLoaderSpec" name="a_WidgetFavoritesTeamsLoader__should_return_favorite_teams_if_available()" time="0.010426998138427734">
+        </testcase>
+        <testcase classname="WidgetFavoritesTeamsLoaderSpec" name="a_WidgetFavoritesTeamsLoader__should_return_Toronto_Raptors_as_a_default_team()" time="0.005283951759338379">
+        </testcase>
+        <testcase classname="IntentCollectionFactorySpec" name="an_IntentCollectionFactory__for_display_collection__should_include_section_for_favorite_teams_if_available()" time="0.07425093650817871">
+        </testcase>
+        <testcase classname="IntentCollectionFactorySpec" name="an_IntentCollectionFactory__for_display_collection__should_not_include_sections_for_NCAAB___NCAAW_leagues()" time="0.060505032539367676">
+        </testcase>
+        <testcase classname="IntentCollectionFactorySpec" name="an_IntentCollectionFactory__for_display_collection__should_return_correct_number_of_sections()" time="0.057424068450927734">
+        </testcase>
+        <testcase classname="IntentCollectionFactorySpec" name="an_IntentCollectionFactory__when_searching__should_include_results_from_NCAAB___NCAAW_leagues_when_available()" time="0.06137800216674805">
+        </testcase>
+        <testcase classname="IntentCollectionFactorySpec" name="an_IntentCollectionFactory__when_searching__should_not_return_any_results_when_not_available()" time="0.06200599670410156">
+        </testcase>
+        <testcase classname="IntentCollectionFactorySpec" name="an_IntentCollectionFactory__when_searching__should_return_correct_result_when_available()" time="0.0590900182723999">
+        </testcase>
+        <testcase classname="KeyValueStorageSpec" name="a_KeyValueStorage__when_using_an_enum__should_read_the_values_correctly()" time="0.003582000732421875">
+        </testcase>
+        <testcase classname="KeyValueStorageSpec" name="a_KeyValueStorage__when_using_an_enum__should_remove_value()" time="0.003712892532348633">
+        </testcase>
+        <testcase classname="KeyValueStorageSpec" name="a_KeyValueStorage__when_using_an_enum__should_set_correct_value_for_key()" time="0.007781982421875">
+        </testcase>
+    </testsuite>
+</testsuites>
