@@ -13662,7 +13662,7 @@ async function run() {
         });
         const checkRequest = await octokit.checks.create(createCheckRequest);
 
-        core.info(`should create comment ${createComment} and comment body ${commentBody}`);
+        core.info(`should create comment ${createComment} val ${core.getInput('create_comment')} and comment body ${commentBody}`);
         // create / update github review message
         if (pullRequest && createComment) {
             const {
