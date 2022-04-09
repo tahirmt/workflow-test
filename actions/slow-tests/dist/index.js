@@ -13625,7 +13625,7 @@ async function run() {
     };
 
     // check byte size of request
-    const checkByteSize = JSON.stringify(checkRequestWithoutSummary).length;
+    const checkByteSize = JSON.stringify(checkRequestWithoutSummary).length * 8;
     const remainingByteSize = GITHUB_MAX_BYTE_SIZE - checkByteSize;
     core.info(`Byte size: ${checkByteSize} remaining byte size: ${remainingByteSize}`);
 
@@ -13637,12 +13637,12 @@ async function run() {
         conclusion,
         output: {
             title,
-            summary: truncateString(message, remainingByteSize),
+            summary: truncateString(message, remainingByteSize / 8),
             annotations: []
         }
     };
 
-    core.info(`Total Byte size: ${JSON.stringify(checkRequestWithoutSummary).length}`);
+    core.info(`Total Byte size: ${JSON.stringify(checkRequestWithoutSummary).length * 8}`);
 
     try {
         const octokit = new Octokit({
