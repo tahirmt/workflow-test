@@ -13642,7 +13642,7 @@ async function run() {
         }
     };
 
-    core.info(`Total Byte size: ${JSON.stringify(checkRequestWithoutSummary).length * 8}`);
+    core.info(`Total Byte size: ${JSON.stringify(createCheckRequest).length * 8}`);
 
     try {
         const octokit = new Octokit({
