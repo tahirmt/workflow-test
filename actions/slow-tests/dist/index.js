@@ -13570,9 +13570,11 @@ const { parseTestReports } = __nccwpck_require__(4952);
 // Unique identifier used for comments
 const IDENTIFIER = "5f60601d-4ab6-4cd6-9f82-85d5b01da919"
 
+const GITHUB_MAX_BYTE_SIZE = 65535;
+
 // There is a byte limit on github request fields
-function truncateForGithubField(string) {
-    return string.length > 65534 ? string.substring(0, 65531) + '...' : string;
+function truncateString(string, maxLength) {
+    return string.length > maxLength ? string.substring(0, maxLength-3) + '...' : string;
 }
 
 async function run() {
@@ -13609,6 +13611,23 @@ async function run() {
 
     // create / update check
 
+    const checkRequestWithoutSummary = {
+        ...github.context.repo,
+        name,
+        head_sha,
+        status,
+        conclusion,
+        output: {
+            title,
+            summary: "",
+            annotations: []
+        }
+    };
+
+    // check byte size of request
+    const checkByteSize = JSON.stringify(createCheckRequest).length;
+    const remainingByteSize = GITHUB_MAX_BYTE_SIZE - checkByteSize;
+
     const createCheckRequest = {
         ...github.context.repo,
         name,
@@ -13617,7 +13636,7 @@ async function run() {
         conclusion,
         output: {
             title,
-            summary: truncateForGithubField(message),
+            summary: truncateString(message, remainingByteSize),
             annotations: []
         }
     };
