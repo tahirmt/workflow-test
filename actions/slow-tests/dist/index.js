@@ -13625,7 +13625,7 @@ async function run() {
     };
 
     // check byte size of request
-    const checkByteSize = JSON.stringify(createCheckRequest).length;
+    const checkByteSize = JSON.stringify(checkRequestWithoutSummary).length;
     const remainingByteSize = GITHUB_MAX_BYTE_SIZE - checkByteSize;
 
     const createCheckRequest = {
