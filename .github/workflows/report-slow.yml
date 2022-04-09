@@ -12,4 +12,4 @@ jobs:
       - name: Report slow tests
         uses: ./actions/slow-tests
         with:
-          report_paths: 'junit_report/*.junit'
+          report_paths: './junit_report/*.junit'
