@@ -13229,7 +13229,7 @@ class ReportItem {
 
     // Returns a string representation of the object
     toString() {
-        return `${this.successful ? '✅' : '❌'} ${this.file} (${this.duration})): ${this.title}`;
+        return `${this.successful ? '✓' : '𐄂'} ${this.file} (${this.duration})): ${this.title}`;
     }
 }
 
@@ -13311,7 +13311,7 @@ async function parseFile(file, threshold) {
                 );
 
                 const path = await resolvePath(filename);
-                const title = `${filename}.${testcase._attributes.name}`;
+                const title = `${testcase._attributes.name}`;
                 
                 core.info(`${path}:${line} ${duration} ${title}`);
                 const failed = testcase.failure || testcase.error
