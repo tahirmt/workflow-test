@@ -13641,7 +13641,8 @@ async function run() {
             const targetComment = comments.find(c => {
                 return c.body.includes(IDENTIFIER)
             })
-            
+
+            const checkId = checkRequest.data.id
             const checkLink = "https://github.com/" + repoOwner + "/" + repoName + "/runs/" + checkId;
             const uniqueIdString = " <!--  " + IDENTIFIER + " -->";
             const fullCommentBody = `${commentBody}\n\n[See more details](${checkLink})\n\n${uniqueIdString}`;
@@ -13656,8 +13657,6 @@ async function run() {
                 core.info("Comment successfully updated for id: " + targetComment.id)
 
             } else {
-                // create new comment
-                const checkId = checkRequest.data.id
                 // Create comment
                 await octokit.issues.createComment({
                     ...defaultParameter,
