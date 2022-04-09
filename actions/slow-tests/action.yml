@@ -1,0 +1,47 @@
+name: 'Test Timing Report'
+description: 'Report JUnit test timing summary.'
+branding:
+  icon: 'check-circle'
+  color: 'green'
+inputs:
+  token:
+    description: 'GITHUB_TOKEN or a repo scoped PAT.'
+    default: ${{ github.token }}
+  report_paths:
+    description: 'junit xml report paths in glob format'
+    required: false
+    default: '**/*.junit'
+  threshold:
+    description: 'Threshold in seconds for a test to be considered slow'
+    required: false
+    default: '0.5'
+  fail_threshold:
+    description: 'Fails if any tests are beyond this threshold'
+    required: false
+    default: '10.0'
+  fails:
+    description: 'Fails if test timing exceeds fail_threshold'
+    required: false
+    default: 'true'
+  fails_if_no_test_results:
+    description: 'should the action fail if no tests results are found'
+    required: false
+    default: 'true'
+  check_name:
+    description: 'check name for test reports'
+    required: false
+    default: 'Test Timing Report'
+  num_tests_pull_request:
+    description: 'Number of tests to report on GitHub Pull Request'
+    required: false
+    default: '20'
+  create_comment:
+    description: 'Create a comment on the pull request'
+    required: false
+    default: 'true'
+  commit:
+    description: 'commit SHA to update the status'
+    required: false
+runs:
+  using: 'node16'
+  main: 'dist/index.js'

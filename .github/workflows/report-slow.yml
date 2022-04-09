@@ -1,0 +1,18 @@
+name: report slow
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Report slow tests
+        uses: ./actions/slow-tests
+        with:
+          report_paths: 'junit_report/*.junit'
+          threshold: 0.5
+          fail_threshold: 0.6
