@@ -31,6 +31,14 @@ inputs:
     description: 'check name for test reports'
     required: false
     default: 'Test Timing Report'
+  num_tests_pull_request:
+    description: 'Number of tests to report on GitHub Pull Request'
+    required: false
+    default: '20'
+  create_comment:
+    description: 'Create a comment on the pull request'
+    required: false
+    default: 'true'
   commit:
     description: 'commit SHA to update the status'
     required: false
