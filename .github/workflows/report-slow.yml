@@ -12,5 +12,3 @@ jobs:
       - uses: actions/checkout@v3
       - name: Report slow tests
         uses: ./actions/slow-tests
-        with:
-          report_paths: './junit_report/*.junit'
