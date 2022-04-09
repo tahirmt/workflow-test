@@ -13570,6 +13570,11 @@ const { parseTestReports } = __nccwpck_require__(4952);
 // Unique identifier used for comments
 const IDENTIFIER = "5f60601d-4ab6-4cd6-9f82-85d5b01da919"
 
+// There is a byte limit on github request fields
+function truncateForGithubField(string) {
+    return string.length > 65534 ? string.substring(0, 65531) + '...' : string;
+}
+
 async function run() {
     const reportPaths = core.getInput('report_paths');
     const failsIfNoTestResults = core.getInput('fails_if_no_test_results') == 'true';
@@ -13612,7 +13617,7 @@ async function run() {
         conclusion,
         output: {
             title,
-            summary: message,
+            summary: truncateForGithubField(message),
             annotations: []
         }
     };
