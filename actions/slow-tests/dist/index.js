@@ -13627,6 +13627,7 @@ async function run() {
     // check byte size of request
     const checkByteSize = JSON.stringify(checkRequestWithoutSummary).length;
     const remainingByteSize = GITHUB_MAX_BYTE_SIZE - checkByteSize;
+    core.info(`Byte size: ${checkByteSize} remaining byte size: ${remainingByteSize}`);
 
     const createCheckRequest = {
         ...github.context.repo,
@@ -13640,6 +13641,8 @@ async function run() {
             annotations: []
         }
     };
+
+    core.info(`Total Byte size: ${JSON.stringify(checkRequestWithoutSummary).length}`);
 
     try {
         const octokit = new Octokit({
