@@ -13334,7 +13334,7 @@ function formatSeconds(seconds) {
     return `${secondsLeft}s`;
 }
 
-const parseTestReports = async (reportPaths, threshold, failThreshold) => {
+const parseTestReports = async (reportPaths, threshold, failThreshold, numTestsPR) => {
     const globber = await glob.create(reportPaths, { followSymbolicLinks: false });
     let outputItems = [];
     let count = 0;
@@ -13361,13 +13361,23 @@ const parseTestReports = async (reportPaths, threshold, failThreshold) => {
     core.debug(`Title ${title}`);
     core.debug(`Failed ${failed}`);
 
-    // create github comment body with the top 20 slowest tests
-    // get the top 20 slowest tests
-    const top20 = sortedReports.slice(0, 20);
-    const top20Message = top20.map(item => `- ${item.toString()}`).join('\n');
-    core.debug(`Top 20 ${top20Message}`);
-
-    const commentBody = `Here is a summar of slowest tests\n\n${top20Message}`;
+    // create github comment body with the top numTestsPR slowest tests
+    // get the top numTestsPR slowest tests
+    
+    let commentBody = '';
+    
+    if (outputItems.length > 0) {
+        const commentTitle = `Slow Tests Report: \n${title}`;
+        if (numTestsPR > 0) {
+            const topTests = sortedReports.slice(0, numTestsPR);
+            topTestsMessage = topTests.map(item => `- ${item.toString()}`).join('\n');
+            core.debug(`Top Tests ${topTestsMessage}`);
+    
+            commentBody = `${commentTitle}\n\n${topTestsMessage}`;
+        } else {
+            commentBody = `${commentTitle}`;
+        }
+    }
 
     return { count, title, message, failed, commentBody };
 };
@@ -13581,15 +13591,17 @@ async function run() {
     const reportPaths = core.getInput('report_paths');
     const failsIfNoTestResults = core.getInput('fails_if_no_test_results') == 'true';
     const fails = core.getInput('fails') == 'true';
+    const createComment = core.getInput('create_comment') == 'true';
     const threshold = parseFloat(core.getInput('threshold'));
     const failThreshold = parseFloat(core.getInput('fail_threshold'));
+    const numberOfTestsToReportOnPullRequest = parseInt(core.getInput('num_tests_pull_request'));
 
     core.info(`Going to parse results from ${reportPaths}`);
     const githubToken = core.getInput('token');
     const name = core.getInput('check_name');
     const commit = core.getInput('commit');
 
-    const {count, title, message, failed, commentBody} = await parseTestReports(reportPaths, threshold, failThreshold);
+    const {count, title, message, failed, commentBody} = await parseTestReports(reportPaths, threshold, failThreshold, numberOfTestsToReportOnPullRequest);
 
     core.debug(`Total tests ${count}`);
 
@@ -13627,7 +13639,7 @@ async function run() {
     // check byte size of request
     const checkByteSize = JSON.stringify(checkRequestWithoutSummary).length * 8;
     const remainingByteSize = GITHUB_MAX_BYTE_SIZE - checkByteSize;
-    core.info(`Byte size: ${checkByteSize} remaining byte size: ${remainingByteSize}`);
+    core.debug(`Byte size: ${checkByteSize} remaining byte size: ${remainingByteSize}`);
 
     const createCheckRequest = {
         ...github.context.repo,
@@ -13642,7 +13654,7 @@ async function run() {
         }
     };
 
-    core.info(`Total Byte size: ${JSON.stringify(createCheckRequest).length * 8}`);
+    core.debug(`Total Byte size: ${JSON.stringify(createCheckRequest).length * 8}`);
 
     try {
         const octokit = new Octokit({
@@ -13651,7 +13663,7 @@ async function run() {
         const checkRequest = await octokit.checks.create(createCheckRequest);
 
         // create / update github review message
-        if (pullRequest) {
+        if (pullRequest && createComment) {
             const {
                 repo: {repo: repoName, owner: repoOwner},
                 runId: runId
@@ -13668,28 +13680,44 @@ async function run() {
             const targetComment = comments.find(c => {
                 return c.body.includes(IDENTIFIER)
             })
+            
+            if (commentBody.length > 0) {
+                // need to create / update comment
+                const checkId = checkRequest.data.id
+                const checkLink = "https://github.com/" + repoOwner + "/" + repoName + "/runs/" + checkId;
+                const uniqueIdString = " <!--  " + IDENTIFIER + " -->";
+                const fullCommentBody = `${commentBody}\n\n[See more details](${checkLink})\n\n${uniqueIdString}`;
+                
+                // Update existing comment
+                if (targetComment) {
+                    const updateCommentRequest = {
+                        ...defaultParameter,
+                        comment_id: targetComment.id,
+                        body: fullCommentBody
+                    }
+                    await octokit.issues.updateComment(updateCommentRequest)
+                    core.info("Comment successfully updated for id: " + targetComment.id)
 
-            const checkId = checkRequest.data.id
-            const checkLink = "https://github.com/" + repoOwner + "/" + repoName + "/runs/" + checkId;
-            const uniqueIdString = " <!--  " + IDENTIFIER + " -->";
-            const fullCommentBody = `${commentBody}\n\n[See more details](${checkLink})\n\n${uniqueIdString}`;
-            // Update existing comment
-            if (targetComment) {
-                const updateCommentRequest = {
-                    ...defaultParameter,
-                    comment_id: targetComment.id,
-                    body: fullCommentBody
+                } else {
+                    // Create comment
+                    await octokit.issues.createComment({
+                        ...defaultParameter,
+                        issue_number: pullRequest.number,
+                        body: fullCommentBody
+                    })
+
+                    core.info("Comment successfully created")
                 }
-                await octokit.issues.updateComment(updateCommentRequest)
-                core.info("Comment successfully updated for id: " + targetComment.id)
-
             } else {
-                // Create comment
-                await octokit.issues.createComment({
-                    ...defaultParameter,
-                    issue_number: pullRequest.number,
-                    body: fullCommentBody
-                })
+                // no comment body, delete comment
+                if (targetComment) {
+                    const deleteCommentRequest = {
+                        ...defaultParameter,
+                        comment_id: targetComment.id
+                    }
+                    await octokit.issues.deleteComment(deleteCommentRequest)
+                    core.info("Comment successfully deleted for id: " + targetComment.id)
+                }
             }
         }
     } catch (error) {
