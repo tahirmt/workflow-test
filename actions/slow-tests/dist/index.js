@@ -3673,6 +3673,44 @@ exports.paginatingEndpoints = paginatingEndpoints;
 
 /***/ }),
 
+/***/ 6737:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+
+const VERSION = "1.0.4";
+
+/**
+ * @param octokit Octokit instance
+ * @param options Options passed to Octokit constructor
+ */
+
+function requestLog(octokit) {
+  octokit.hook.wrap("request", (request, options) => {
+    octokit.log.debug("request", options);
+    const start = Date.now();
+    const requestOptions = octokit.request.endpoint.parse(options);
+    const path = requestOptions.url.replace(options.baseUrl, "");
+    return request(options).then(response => {
+      octokit.log.info(`${requestOptions.method} ${path} - ${response.status} in ${Date.now() - start}ms`);
+      return response;
+    }).catch(error => {
+      octokit.log.info(`${requestOptions.method} ${path} - ${error.status} in ${Date.now() - start}ms`);
+      throw error;
+    });
+  });
+}
+requestLog.VERSION = VERSION;
+
+exports.requestLog = requestLog;
+//# sourceMappingURL=index.js.map
+
+
+/***/ }),
+
 /***/ 5863:
 /***/ ((__unused_webpack_module, exports) => {
 
@@ -4968,6 +5006,31 @@ const request = withDefaults(endpoint.endpoint, {
 });
 
 exports.request = request;
+//# sourceMappingURL=index.js.map
+
+
+/***/ }),
+
+/***/ 6549:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+
+var core = __nccwpck_require__(8622);
+var pluginRequestLog = __nccwpck_require__(6737);
+var pluginPaginateRest = __nccwpck_require__(7802);
+var pluginRestEndpointMethods = __nccwpck_require__(5863);
+
+const VERSION = "18.12.0";
+
+const Octokit = core.Octokit.plugin(pluginRequestLog.requestLog, pluginRestEndpointMethods.legacyRestEndpointMethods, pluginPaginateRest.paginateRest).defaults({
+  userAgent: `octokit-rest.js/${VERSION}`
+});
+
+exports.Octokit = Octokit;
 //# sourceMappingURL=index.js.map
 
 
@@ -13501,6 +13564,7 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(4181);
 const github = __nccwpck_require__(2726);
+const { Octokit } = __nccwpck_require__(6549);
 const { parseTestReports } = __nccwpck_require__(4952);
 
 // Unique identifier used for comments
