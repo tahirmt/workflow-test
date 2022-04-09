@@ -1,0 +1,15 @@
+name: report slow
+
+on:
+  push:
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Report slow tests
+        uses: ./actions/slow-tests
+        with:
+          report_paths: 'junit_report/*.junit'
