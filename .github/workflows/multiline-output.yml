@@ -26,3 +26,12 @@ jobs:
       - name: display string
         run: |
           echo "The string is: ${{ steps.my_string.outputs.content }}"
+      - name: js output
+        id: js_step
+        uses: actions/github-script@v6
+        with:
+          script: |
+            core.setOutput('test', 'This is a\nmultiline string\nwith %age output');
+      - name: display js string
+        run: |
+          echo "The string is: ${{ steps.js_step.outputs.test }}"
