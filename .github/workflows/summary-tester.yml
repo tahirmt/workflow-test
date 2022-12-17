@@ -19,4 +19,4 @@ jobs:
           echo "- Lets add a second bullet point" >> $GITHUB_STEP_SUMMARY
           echo "- How about a third one?" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
-          echo "https://geeksoncoffee.com/wp-content/uploads/2019/08/Hilarious-The-office-memes.jpeg" >> $GITHUB_STEP_SUMMARY
+          echo "![Image](https://geeksoncoffee.com/wp-content/uploads/2019/08/Hilarious-The-office-memes.jpeg)" >> $GITHUB_STEP_SUMMARY
