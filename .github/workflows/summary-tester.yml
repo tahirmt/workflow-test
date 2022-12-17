@@ -1,0 +1,20 @@
+name: Summary Report
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  create-summary:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run a multi-line script
+        run: |
+          echo "This is the lead in sentence for the list" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
+          echo "- Lets add a bullet point" >> $GITHUB_STEP_SUMMARY
+          echo "- Lets add a second bullet point" >> $GITHUB_STEP_SUMMARY
+          echo "- How about a third one?" >> $GITHUB_STEP_SUMMARY
