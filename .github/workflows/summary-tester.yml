@@ -1,0 +1,30 @@
+name: Summary Report
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  macos-runner-test:
+    runs-on: macos-latest
+    steps:
+      - run: echo ${{ runner.name }}
+      
+  create-summary:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - run: |
+          echo ${{ runner.name }}
+
+      - name: Run a multi-line script
+        run: |
+          echo "This is the lead in sentence for the list" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
+          echo "- Lets add a bullet point" >> $GITHUB_STEP_SUMMARY
+          echo "- Lets add a second bullet point" >> $GITHUB_STEP_SUMMARY
+          echo "- How about a third one?" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
+          echo "![Image](https://geeksoncoffee.com/wp-content/uploads/2019/08/Hilarious-The-office-memes.jpeg)" >> $GITHUB_STEP_SUMMARY
